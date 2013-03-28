@@ -1,0 +1,6 @@
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\MLPproject.exe
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\MLPproject.pdb
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.exe
+C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.pdb
