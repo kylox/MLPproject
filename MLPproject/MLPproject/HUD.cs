@@ -7,5 +7,6 @@ namespace MLPproject
 {
     class HUD
     {
+
     }
 }
