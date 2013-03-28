@@ -4,3 +4,9 @@ C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\ResolveA
 C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.exe
 C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.pdb
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\bin\x86\Debug\MLPproject.exe
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\bin\x86\Debug\MLPproject.pdb
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.exe
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.pdb

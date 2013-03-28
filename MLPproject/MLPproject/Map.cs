@@ -14,44 +14,22 @@ namespace MLPproject
 {
     class Map
     {
-        int[,] plateau_tile = new int[32,32];
-        Type_unite[,] plateau_unité = new Type_unite[32, 32];
-
+        Tile[,] plateau_tile = new Tile[32, 32];
+        List<Unite> listUnits = new List<Unite>();
+        List<Ville> listVilles = new List<Ville>();
+        List<Texture2D> listTileTextures = new List<Texture2D>();
         public Map()
         {
-
-
 
         }
 
 
         public void Draw(SpriteBatch spritebatch)
         {
-            for (int i = 0; i < plateau_tile.GetLength(1); i++)
-			{
-			 for (int j = 0; j < plateau_tile.GetLength(0); j++)
-			{
-                 switch(plateau_tile[i,j])
-                 {
-                     case 0: 
-
-                         break;
-                     case 1:
-                         break;
-
-
-                     case 2:
-
-                         break;
-
-
-
-
-
-                 }
-			 
-			}
-			}
+            // Affichage de toutes les tiles
+            for (int i = 0, c = plateau_tile.GetLength(1); i < c; i++)
+                for (int j = 0, d = plateau_tile.GetLength(0); j < d; j++)
+                    plateau_tile[j, i].Draw(spritebatch);
 
 
 

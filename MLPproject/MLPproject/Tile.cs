@@ -26,7 +26,7 @@ namespace MLPproject
         Color Color;
         int Joueur;
         Texture2D texture;
-        Type_tile Type;
+        public Type_tile Type {get; private set; }
 
         public Tile(Type_tile type)
         {
@@ -47,7 +47,6 @@ namespace MLPproject
                     break;
             }
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Begin();

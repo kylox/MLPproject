@@ -7,15 +7,15 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPprojectContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPprojectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2012-12-02T20:49:40.8034162+01:00</Value>
+        <Value>2012-10-20T11:39:32.1778458+02:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
