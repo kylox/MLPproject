@@ -18,6 +18,7 @@ namespace MLPproject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Map map;
 
         public Game1()
         {
@@ -36,7 +37,7 @@ namespace MLPproject
         {
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            map = new Map();
 
         }
 

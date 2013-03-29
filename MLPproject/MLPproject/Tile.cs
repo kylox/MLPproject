@@ -12,15 +12,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MLPproject
 {
-    enum Type_tile
+    public enum Type_tile
     {
-        eau,
-        roche,
-        herbe
+        eau = 0,
+        roche = 1,
+        herbe = 2
     }
 
 
-    class Tile
+    public class Tile
     {
         Vector2 Position;
         Color Color;
