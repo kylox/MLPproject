@@ -14,7 +14,7 @@ namespace MLPproject
 {
     enum Type_unite
     {
-        legere,
+        legere = 0,
         rapide,
         lourde
     };
