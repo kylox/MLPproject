@@ -5,8 +5,16 @@ using System.Text;
 
 namespace MLPproject
 {
-    class HUD
+    static class Ressource
     {
+
+
+        public Ressource()
+        {
+
+
+        }
+
 
     }
 }

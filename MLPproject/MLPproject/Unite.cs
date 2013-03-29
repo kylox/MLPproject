@@ -24,19 +24,42 @@ namespace MLPproject
         int Attaque;
         int Defense;
         int Joueur;
-       
+        int vitesse;
         Type_unite Type;
         Vector2 Position;
         Texture2D Sprite;
 
-        public Unite(int joueur, int attaque, int defense, Texture2D sprite, Vector2 position, Type_unite type)
+        public Unite(int joueur, Vector2 position, Type_unite type)
         {
-            this.Attaque = attaque;
-            this.Defense = defense;
+            switch (Type)
+            {
+                case Type_unite.legere:
+                    Attaque = 2;
+                    Defense = 2;
+                    vitesse = 2;
+                    Sprite = null; // mettre la texure 
+                    break;
+                case Type_unite.rapide:
+                    Attaque = 1;
+                    Defense = 1;
+                    vitesse = 4;
+                    Sprite = null;//mettre texutre
+                    break;
+                case Type_unite.lourde:
+                    Attaque = 3;
+                    Defense = 3;
+                    vitesse = 1;
+                    Sprite = null; // mettre texture
+                    break;
+            }
+
+
+
             this.Joueur = joueur;
             this.Position = position;
-            this.Sprite = sprite;
+
             this.Type = type;
+
         }
 
         public void Deplacement(int x, int y)
@@ -46,27 +69,27 @@ namespace MLPproject
             Position.Y = y;
         }
 
-        public bool Is_inbounds()//destination in bounds (a la souris)
+        public bool Is_inbounds(Vector2 destination)//destination in bounds (a la souris)
         {
             switch (Type)
             {
                 case Type_unite.legere:
-                    //a completer
+                    if (Math.Abs(destination.X - Position.X) < 2 || Math.Abs(destination.X - Position.X) < 2)
+                        return false;
                     break;
 
                 case Type_unite.rapide:
-                    //a completer
+                    if (Math.Abs(destination.X - Position.X) < 4 || Math.Abs(destination.X - Position.X) < 4)
+                        return false;
                     break;
                 case Type_unite.lourde:
-                    //a completer
+                    if (Math.Abs(destination.X - Position.X) < 1 || Math.Abs(destination.X - Position.X) < 1)
+                        return false;
                     break;
-
-
 
             }
 
-
-            return false;
+            return true;
         }
 
 
