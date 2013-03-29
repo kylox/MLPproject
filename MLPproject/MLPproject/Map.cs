@@ -24,11 +24,9 @@ namespace MLPproject
             Random r = new Random();
             for (int i = 0, d = plateau_tile.GetLength(0); i < d; i++)
                 for (int j = 0, c = plateau_tile.GetLength(1); j < c; j++)
-                    plateau_tile[i, j] = new Tile((Type_tile)r.Next(3));
+                    plateau_tile[i, j] = new Tile((Type_tile)r.Next(3), i * 32, j * 32);
 
         }
-
-
         public void Draw(SpriteBatch spritebatch)
         {
             // Affichage de toutes les tiles
