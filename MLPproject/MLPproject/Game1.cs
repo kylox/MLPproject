@@ -23,7 +23,7 @@ namespace MLPproject
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this)
+            graphics = new GraphicsDeviceManager(this);
             {
                 PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
                 PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
