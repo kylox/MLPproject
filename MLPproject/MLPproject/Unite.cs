@@ -52,19 +52,13 @@ namespace MLPproject
                     Sprite = null; // mettre texture
                     break;
             }
-
-
-
             this.Joueur = joueur;
             this.Position = position;
-
             this.Type = type;
-
         }
 
         public void Deplacement(int x, int y)
         {
-
             Position.X = x;
             Position.Y = y;
         }
