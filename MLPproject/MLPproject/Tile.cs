@@ -23,7 +23,7 @@ namespace MLPproject
 
     public class Tile
     {
-        Vector2 Position;
+        public Vector2 Position;
         Color Color;
         int Joueur;
         Texture2D texture;

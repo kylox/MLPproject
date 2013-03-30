@@ -14,12 +14,12 @@ namespace MLPproject
 {
     class Map
     {
-        public readonly int mapWidth = 16, //tu triches pierre :)
+        public readonly int mapWidth = 16,
                             mapHeight = 16,
                             tileWidth = TexturePack.TilesTexture[0].Width,
                             tileHeight = TexturePack.TilesTexture[0].Height;
         Point origine = new Point(0, 0);
-        Tile[,] plateau_tile;
+        public Tile[,] plateau_tile;
         public List<Unite> listUnits = new List<Unite>();
         public List<Ville> listVilles = new List<Ville>();
         List<Texture2D> listTileTextures = new List<Texture2D>();
@@ -54,7 +54,7 @@ namespace MLPproject
             int i = (x - (x % tileWidth)) / tileWidth;
             int j = (y - (y % tileHeight)) / tileHeight;
 
-            return plateau_tile[j, i];
+            return plateau_tile[i, j];
         }
 
         public Point MouseToMap()
@@ -72,6 +72,20 @@ namespace MLPproject
             p.X = origine.X + p.X * tileWidth;
             p.Y = origine.Y + p.Y * tileHeight;
             return p;
+        }
+
+        public bool ValidCoordinates(int x, int y)
+        {
+            if (x < 0)
+                return false;
+            if (y < 0)
+                return false;
+            if (x >= plateau_tile.GetLength(1))
+                return false;
+            if (y >= plateau_tile.GetLength(0))
+                return false;
+
+            return true;
         }
     }
 }

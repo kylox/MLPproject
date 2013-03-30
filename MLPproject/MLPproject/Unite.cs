@@ -26,6 +26,12 @@ namespace MLPproject
         int Joueur;
         int vitesse;
         int pv;
+
+        bool IsSelected;
+
+        Color selectionColor = Color.Gray;
+        Color defaultColor = Color.White;
+
         Type_unite Type;
         Vector2 Position;
         Texture2D Sprite;
@@ -58,12 +64,13 @@ namespace MLPproject
             this.Position = position;
             this.Type = type;
             this.Map = map;
+            this.IsSelected = false;
         }
 
-        public void Deplacement(int x, int y)
+        public void Deplacement(Point p)
         {
-            Position.X = x;
-            Position.Y = y;
+            Position.X = p.X;
+            Position.Y = p.Y;
         }
 
         public bool Is_inbounds(Vector2 destination)//destination in bounds (a la souris)
@@ -95,15 +102,39 @@ namespace MLPproject
             if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
             {
                 if (MouseOnTile())
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(Color.Gray);
+                {
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(selectionColor);
+                    IsSelected = true;
+                }
                 else
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(Color.White);
+                {
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(defaultColor);
+                    IsSelected = false;
+                }
+            }
+
+            if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
+            {
+                if (IsSelected)
+                {
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(defaultColor);
+                    Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(selectionColor);
+                }
             }
         }
 
         public bool MouseOnTile()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
+        }
+
+        public Point TilePos(Point p)
+        {
+            int x = (p.X - (p.X % Sprite.Width));
+            int y = (p.Y - (p.Y % Sprite.Height));
+
+            return new Point(x, y);
         }
 
         public void Draw(SpriteBatch spritebatch)
