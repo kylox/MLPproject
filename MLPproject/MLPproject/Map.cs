@@ -47,6 +47,16 @@ namespace MLPproject
             
 
         }
+
+        // Retourne la tile en fonction de la position
+        public Tile GetTile(int x, int y)
+        {
+            int i = (x - (x % tileWidth)) / tileWidth;
+            int j = (y - (y % tileHeight)) / tileHeight;
+
+            return plateau_tile[j, i];
+        }
+
         public Point MouseToMap()
         {
             return ScreenToMap(new Point(Data.mouseState.X, Data.mouseState.Y));

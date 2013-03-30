@@ -39,9 +39,16 @@ namespace MLPproject
             Position = new Vector2(x, y);
 
         }
+
+        // Permet de modifier la couleur de fond de la tile 
+        public void SetColor(Color color)
+        {
+            this.Color = color;
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
-           spritebatch.Draw(texture,Position,Color.White);
+           spritebatch.Draw(texture,Position, this.Color);
         }
 
 

@@ -21,6 +21,9 @@ namespace MLPproject
         Map map;
         Joueur J1;
 
+        // Temporairement je créer une unité à la main
+        Unite unite_J1;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this)
@@ -49,6 +52,7 @@ namespace MLPproject
             map = new Map();
             J1 = new Joueur(1,map);
 
+            unite_J1 = new Unite(1, new Vector2(32 * 5, 32 * 5), Type_unite.legere, map);
         }
 
         protected override void UnloadContent()
@@ -61,6 +65,8 @@ namespace MLPproject
         {
             Data.Update();
             J1.Update();
+            unite_J1.Update(gameTime);
+
             if  (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
@@ -76,6 +82,9 @@ namespace MLPproject
             map.Draw(spriteBatch);
             J1.Draw(spriteBatch);
             spriteBatch.End();
+
+            unite_J1.Draw(spriteBatch);
+
             base.Draw(gameTime);
         }
     }

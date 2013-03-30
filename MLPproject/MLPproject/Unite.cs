@@ -25,11 +25,13 @@ namespace MLPproject
         int Defense;
         int Joueur;
         int vitesse;
+        int pv;
         Type_unite Type;
         Vector2 Position;
         Texture2D Sprite;
+        Map Map;
 
-        public Unite(int joueur, Vector2 position, Type_unite type)
+        public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
             switch (Type)
             {
@@ -55,6 +57,7 @@ namespace MLPproject
             this.Joueur = joueur;
             this.Position = position;
             this.Type = type;
+            this.Map = map;
         }
 
         public void Deplacement(int x, int y)
@@ -81,18 +84,26 @@ namespace MLPproject
                     if (Math.Abs(destination.X - Position.X) < 1 || Math.Abs(destination.X - Position.X) < 1)
                         return false;
                     break;
-
             }
 
             return true;
         }
 
-
         public void Update(GameTime gametime)
         {
+            // On va permettre la selection de l'unité
+            if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
+            {
+                if (MouseOnTile())
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(Color.Gray);
+                else
+                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(Color.White);
+            }
+        }
 
-
-
+        public bool MouseOnTile()
+        {
+            return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -100,7 +111,6 @@ namespace MLPproject
             spritebatch.Begin();
             spritebatch.Draw(Sprite, Position, Color.White);
             spritebatch.End();
-
         }
 
     }
