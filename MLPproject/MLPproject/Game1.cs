@@ -25,8 +25,12 @@ namespace MLPproject
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
-                PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+                //PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+                //PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+
+                // Petite modification pour que ça rentre dans mon écran ^^ (SDanTe)
+                PreferredBackBufferWidth = 16 * 32,
+                PreferredBackBufferHeight = 16 * 32
             };
             Content.RootDirectory = "Content";
         }

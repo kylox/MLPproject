@@ -43,7 +43,7 @@ namespace MLPproject
                     Attaque = 1;
                     Defense = 1;
                     vitesse = 4;
-                    Sprite = TexturePack.TilesUnites[1];//mettre texutre
+                    Sprite = TexturePack.TilesUnites[1]; //mettre texutre
                     break;
                 case Type_unite.lourde:
                     Attaque = 3;
@@ -76,6 +76,7 @@ namespace MLPproject
                     if (Math.Abs(destination.X - Position.X) < 4 || Math.Abs(destination.X - Position.X) < 4)
                         return false;
                     break;
+
                 case Type_unite.lourde:
                     if (Math.Abs(destination.X - Position.X) < 1 || Math.Abs(destination.X - Position.X) < 1)
                         return false;

@@ -14,8 +14,8 @@ namespace MLPproject
 {
     class Map
     {
-        public readonly int mapWidth = 32, //tu triches pierre :)
-                            mapHeight = 32,
+        public readonly int mapWidth = 16, //tu triches pierre :)
+                            mapHeight = 16,
                             tileWidth = TexturePack.TilesTexture[0].Width,
                             tileHeight = TexturePack.TilesTexture[0].Height;
         Point origine = new Point(0, 0);
