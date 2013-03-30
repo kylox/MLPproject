@@ -37,19 +37,19 @@ namespace MLPproject
                     Attaque = 2;
                     Defense = 2;
                     vitesse = 2;
-                    Sprite = null; // mettre la texure 
+                    Sprite = TexturePack.TilesUnites[0]; // mettre la texure 
                     break;
                 case Type_unite.rapide:
                     Attaque = 1;
                     Defense = 1;
                     vitesse = 4;
-                    Sprite = null;//mettre texutre
+                    Sprite = TexturePack.TilesUnites[1];//mettre texutre
                     break;
                 case Type_unite.lourde:
                     Attaque = 3;
                     Defense = 3;
                     vitesse = 1;
-                    Sprite = null; // mettre texture
+                    Sprite = TexturePack.TilesUnites[2]; // mettre texture
                     break;
             }
             this.Joueur = joueur;

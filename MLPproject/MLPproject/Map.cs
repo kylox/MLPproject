@@ -14,8 +14,8 @@ namespace MLPproject
 {
     class Map
     {
-        public readonly int mapWidth = 20,
-                            mapHeight = 20,
+        public readonly int mapWidth = 32, //tu triches pierre :)
+                            mapHeight = 32,
                             tileWidth = TexturePack.TilesTexture[0].Width,
                             tileHeight = TexturePack.TilesTexture[0].Height;
         Point origine = new Point(0, 0);
@@ -23,6 +23,7 @@ namespace MLPproject
         public List<Unite> listUnits = new List<Unite>();
         public List<Ville> listVilles = new List<Ville>();
         List<Texture2D> listTileTextures = new List<Texture2D>();
+       
         public Map()
         {
             plateau_tile = new Tile[mapWidth, mapHeight];
@@ -32,18 +33,18 @@ namespace MLPproject
                 for (int j = 0; j < mapHeight; j++)
                     plateau_tile[i, j] = new Tile((Type_tile)r.Next(3), origine.X + i * tileWidth, origine.Y + j * tileHeight);
 
-        }
+        }       
         public void Draw(SpriteBatch spritebatch)
         {
             // Affichage de toutes les tiles
-            for (int i = 0; i < mapHeight; i++)
+         /*   for (int i = 0; i < mapHeight; i++)
                 for (int j = 0; j < mapWidth; j++)
                     plateau_tile[j, i].Draw(spritebatch);
 
 
 
 
-
+            */
 
         }
         public Point MouseToMap()

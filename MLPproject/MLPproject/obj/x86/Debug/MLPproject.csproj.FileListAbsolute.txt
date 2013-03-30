@@ -28,3 +28,4 @@ C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\Resolve
 C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.exe
 C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.pdb
+C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\pixel.xnb

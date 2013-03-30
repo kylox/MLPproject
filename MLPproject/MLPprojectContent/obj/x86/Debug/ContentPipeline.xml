@@ -55,6 +55,15 @@
       <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\soutien.xnb</Output>
       <Time>2013-04-01T20:27:00.0125328+02:00</Time>
     </Item>
+    <Item>
+      <Source>pixel.png</Source>
+      <Name>pixel</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\pixel.xnb</Output>
+      <Time>2013-03-30T09:37:25.9083954+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <TargetPlatform>Windows</TargetPlatform>

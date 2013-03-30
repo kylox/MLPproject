@@ -14,14 +14,19 @@ namespace MLPproject
     {
         public static List<Texture2D> TilesTexture { get; private set; }
         public static List<Texture2D> TilesUnites { get; private set; }
+
+        public static Texture2D pixel;
         public static void Load(ContentManager content)
         {
+            pixel = content.Load<Texture2D>("pixel");
             TilesTexture = new List<Texture2D>
             {
                 content.Load<Texture2D>("EAU"),
                 content.Load<Texture2D>("ROCHER"),
-                content.Load<Texture2D>("HERBE")
+                content.Load<Texture2D>("HERBE"),
+               
             };
+
             TilesUnites = new List<Texture2D>
             {
                 content.Load<Texture2D>("leger"),

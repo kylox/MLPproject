@@ -19,6 +19,7 @@ namespace MLPproject
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Map map;
+        Joueur J1;
 
         public Game1()
         {
@@ -42,6 +43,7 @@ namespace MLPproject
             TexturePack.Load(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             map = new Map();
+            J1 = new Joueur(1,map);
 
         }
 
@@ -54,6 +56,7 @@ namespace MLPproject
         protected override void Update(GameTime gameTime)
         {
             Data.Update();
+            J1.Update();
             if  (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
@@ -65,8 +68,9 @@ namespace MLPproject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin();
-            map.Draw(spriteBatch);
+            spriteBatch.Begin();        
+            //map.Draw(spriteBatch);
+            J1.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }
