@@ -41,7 +41,7 @@ namespace MLPproject
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture,Position,Color.White);
+           // spritebatch.Draw(texture,Position,Color.White);
         }
 
 

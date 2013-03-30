@@ -37,14 +37,14 @@ namespace MLPproject
         public void Draw(SpriteBatch spritebatch)
         {
             // Affichage de toutes les tiles
-         /*   for (int i = 0; i < mapHeight; i++)
+            for (int i = 0; i < mapHeight; i++)
                 for (int j = 0; j < mapWidth; j++)
                     plateau_tile[j, i].Draw(spritebatch);
 
 
 
 
-            */
+            
 
         }
         public Point MouseToMap()

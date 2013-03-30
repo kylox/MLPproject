@@ -69,7 +69,7 @@ namespace MLPproject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();        
-            //map.Draw(spriteBatch);
+            map.Draw(spriteBatch);
             J1.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
