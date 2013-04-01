@@ -18,7 +18,7 @@ namespace MLPproject
                             mapHeight = 16,
                             tileWidth = TexturePack.TilesTexture[0].Width,
                             tileHeight = TexturePack.TilesTexture[0].Height;
-        Point origine = new Point(0, 0);
+        Point origine = new Point(150, 120);
         public Tile[,] plateau_tile;
         public List<Unite> listUnits = new List<Unite>();
         public List<Ville> listVilles = new List<Ville>();
@@ -40,12 +40,6 @@ namespace MLPproject
             for (int i = 0; i < mapHeight; i++)
                 for (int j = 0; j < mapWidth; j++)
                     plateau_tile[j, i].Draw(spritebatch);
-
-
-
-
-            
-
         }
 
         // Retourne la tile en fonction de la position

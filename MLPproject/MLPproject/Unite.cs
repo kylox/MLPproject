@@ -29,6 +29,14 @@ namespace MLPproject
 
         bool IsSelected;
 
+        Point origine = new Point(150, 120);
+
+        public bool isSelected
+        {
+            get { return IsSelected; }
+            set { IsSelected = value; }
+        }
+
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
 
@@ -36,8 +44,6 @@ namespace MLPproject
         Vector2 Position;
         Texture2D Sprite;
         Map Map;
-
-        Boutton selection;
 
         public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
@@ -63,7 +69,10 @@ namespace MLPproject
                     break;
             }
             this.Joueur = joueur;
-            this.Position = position;
+ 
+            this.Position.X = origine.X +position.X;
+            this.Position.Y = origine.Y +position.Y;
+
             this.Type = type;
             this.Map = map;
             this.IsSelected = false;
@@ -105,12 +114,12 @@ namespace MLPproject
             {
                 if (MouseOnTile())
                 {
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(selectionColor);
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
                     IsSelected = true;
                 }
                 else
                 {
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(defaultColor);
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(defaultColor);
                     IsSelected = false;
                 }
             }
@@ -119,9 +128,9 @@ namespace MLPproject
             {
                 if (IsSelected)
                 {
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(defaultColor);
+                    Map.GetTile((int)Position.X -origine.X, (int)Position.Y-origine.Y).SetColor(defaultColor);
                     Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
-                    Map.GetTile((int)Position.X, (int)Position.Y).SetColor(selectionColor);
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
                 }
             }
         }

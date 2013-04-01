@@ -16,7 +16,7 @@ namespace MLPproject
     class Joueur
     {
 
-        int compte_en_banque {get ; set;}
+        int compte_en_banque { get; set; }
         int _ID;
         Vector2 Position;
 
@@ -24,38 +24,33 @@ namespace MLPproject
 
         int ID
         {
-            get{return ID;}
-            set{_ID = value;}
+            get { return ID; }
+            set { _ID = value; }
         }
 
-        public Joueur(int id,Map map)
+        public Joueur(int id, Map map)
         {
             compte_en_banque = 500;
             this._ID = id;
             this.Map = map;
-            if (id == 1)
-                Position = Vector2.Zero;
+        }
+
+        public void intersect()
+        {
+
+
         }
 
         public void Update()
         {
-            if (_ID == 1)
-            {
-                if (Data.keyboardState.IsKeyDown(Keys.Q) && Data.keyboardState != Data.prevKeyboardState && Position.X > 0)
-                    Position.X--;
-                if (Data.keyboardState.IsKeyDown(Keys.D) && Data.keyboardState != Data.prevKeyboardState && Position.X < Map.mapWidth)
-                    Position.X++;
-                if (Data.keyboardState.IsKeyDown(Keys.Z) && Data.keyboardState != Data.prevKeyboardState && Position.Y > 0)
-                    Position.Y--;
-                if (Data.keyboardState.IsKeyDown(Keys.S) && Data.keyboardState != Data.prevKeyboardState && Position.Y < Map.mapHeight)
-                    Position.Y++;
-            }
-        }
 
+
+
+        }
 
         public void Draw(SpriteBatch spritebatch)
         {
-            
+
         }
     }
 }
