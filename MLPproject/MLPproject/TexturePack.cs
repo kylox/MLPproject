@@ -16,9 +16,11 @@ namespace MLPproject
         public static List<Texture2D> TilesUnites { get; private set; }
 
         public static Texture2D pixel;
+        public static SpriteFont font;
         public static void Load(ContentManager content)
         {
             pixel = content.Load<Texture2D>("pixel");
+            font = content.Load<SpriteFont>("spritefont");
             TilesTexture = new List<Texture2D>
             {
                 content.Load<Texture2D>("EAU"),

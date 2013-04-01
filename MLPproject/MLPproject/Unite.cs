@@ -37,6 +37,8 @@ namespace MLPproject
         Texture2D Sprite;
         Map Map;
 
+        Boutton selection;
+
         public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
             switch (Type)

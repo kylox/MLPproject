@@ -36,7 +36,7 @@ namespace MLPproject
             this.Type = type;
             // On charge la texture adaptée à la tile en fonction de son type
             texture = TexturePack.TilesTexture[(int)type];
-            Position = new Vector2(x, y);
+            Position = new Vector2(x+100+5*11, y);
 
         }
 

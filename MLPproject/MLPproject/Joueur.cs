@@ -55,7 +55,7 @@ namespace MLPproject
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(TexturePack.TilesUnites[0], new Vector2((int)Position.X * 32,(int) Position.Y * 32) , Color.Red);
+            
         }
     }
 }
