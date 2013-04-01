@@ -5,11 +5,11 @@ using System.Text;
 
 namespace MLPproject
 {
-    static class Ressource
+    static class Resources
     {
 
 
-        public Ressource()
+        public static void LoadResources()
         {
 
 

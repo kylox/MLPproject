@@ -18,25 +18,30 @@ namespace MLPproject
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Map map;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this)
+            {
+                PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
+                PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
+            };
             Content.RootDirectory = "Content";
         }
 
         protected override void Initialize()
         {
-
+            IsMouseVisible = true;
             base.Initialize();
         }
 
 
         protected override void LoadContent()
         {
-
+            TexturePack.Load(Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            map = new Map();
 
         }
 
@@ -48,7 +53,8 @@ namespace MLPproject
       
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            Data.Update();
+            if  (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
 
@@ -59,7 +65,9 @@ namespace MLPproject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            map.Draw(spriteBatch);
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

@@ -12,15 +12,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MLPproject
 {
-    enum Type_tile
+    public enum Type_tile
     {
-        eau,
+        // On initialise l'enum à 0 pour pouvoir l'utiliser dans les tables
+        eau = 0,
         roche,
         herbe
     }
 
 
-    class Tile
+    public class Tile
     {
         Vector2 Position;
         Color Color;
@@ -28,30 +29,19 @@ namespace MLPproject
         Texture2D texture;
         public Type_tile Type {get; private set; }
 
-        public Tile(Type_tile type)
+        public Tile(Type_tile type, int x, int y)
         {
             Color = Color.White;
             Joueur = 0;
             this.Type = type;
+            // On charge la texture adaptée à la tile en fonction de son type
+            texture = TexturePack.TilesTexture[(int)type];
+            Position = new Vector2(x, y);
 
-            switch (Type)
-            {
-                case Type_tile.eau:
-                    texture = null; //mettre le tile de l'eau
-                    break;
-                case Type_tile.herbe:
-                    texture = null; //mettre le tile de l'herbe
-                    break;
-                case Type_tile.roche:
-                    texture = null; //mettre le tile de la roche
-                    break;
-            }
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Begin();
             spritebatch.Draw(texture,Position,Color.White);
-            spritebatch.End();
         }
 
 
