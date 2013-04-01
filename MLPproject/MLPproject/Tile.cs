@@ -20,9 +20,10 @@ namespace MLPproject
         herbe
     }
 
+
     public class Tile
     {
-        Vector2 Position;
+        public Vector2 Position;
         Color Color;
         int Joueur;
         Texture2D texture;
@@ -36,10 +37,21 @@ namespace MLPproject
             // On charge la texture adaptée à la tile en fonction de son type
             texture = TexturePack.TilesTexture[(int)type];
             Position = new Vector2(x, y);
+
         }
+
+        // Permet de modifier la couleur de fond de la tile 
+        public void SetColor(Color color)
+        {
+            this.Color = color;
+        }
+
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture,Position,Color.White);
+           spritebatch.Draw(texture,Position, this.Color);
         }
+
+
+
     }
 }
