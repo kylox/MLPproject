@@ -1,5 +1,0 @@
-C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\gaudro_m\Desktop\test\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\Gabriel\Documents\EPITA\Sup\IP\TP Bonus\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\MLPprojectContent.contentprojResolveAssemblyReference.cache

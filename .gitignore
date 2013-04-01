@@ -113,3 +113,7 @@ UpgradeLog*.XML
 /*.suo
 
 
+/MLPproject/MLPproject/obj
+/MLPproject/MLPproject/bin
+/MLPproject/MLPprojectContent/obj
+/MLPproject/MLPprojectContent/bin
