@@ -1,0 +1,2 @@
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.exe
+C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPproject\obj\x86\Debug\MLPproject.pdb
