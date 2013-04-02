@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 C:\Users\Pierre\Documents\Ecole\Projet\RISK\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+=======
+C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\ResolveAssemblyReference.cache
+>>>>>>> a1ab7e587f4e20f4b6dd3a955a495b8194adbe20
