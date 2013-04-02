@@ -1,6 +1,0 @@
-Content\EAU.xnb
-Content\HERBE.xnb
-Content\leger.xnb
-Content\lourd.xnb
-Content\ROCHER.xnb
-Content\soutien.xnb

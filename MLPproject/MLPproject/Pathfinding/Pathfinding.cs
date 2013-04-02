@@ -5,16 +5,7 @@ using System.Text;
 
 namespace MLPproject
 {
-    static class Resources
+    class Pathfinding
     {
-
-
-        public static void LoadResources()
-        {
-
-
-        }
-
-
     }
 }

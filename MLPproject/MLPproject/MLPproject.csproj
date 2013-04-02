@@ -107,13 +107,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boutton.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="HUD.cs" />
+    <Compile Include="Joueur.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Pathfinding\Cost.cs" />
+    <Compile Include="Pathfinding\Pathfinding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="Ressource.cs" />
     <Compile Include="TexturePack.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Unite.cs" />

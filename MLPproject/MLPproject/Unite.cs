@@ -25,11 +25,27 @@ namespace MLPproject
         int Defense;
         int Joueur;
         int vitesse;
+        int pv;
+
+        bool IsSelected;
+
+        Point origine = new Point(150, 120);
+
+        public bool isSelected
+        {
+            get { return IsSelected; }
+            set { IsSelected = value; }
+        }
+
+        Color selectionColor = Color.Gray;
+        Color defaultColor = Color.White;
+
         Type_unite Type;
         Vector2 Position;
         Texture2D Sprite;
+        Map Map;
 
-        public Unite(int joueur, Vector2 position, Type_unite type)
+        public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
             switch (Type)
             {
@@ -37,36 +53,35 @@ namespace MLPproject
                     Attaque = 2;
                     Defense = 2;
                     vitesse = 2;
-                    Sprite = null; // mettre la texure 
+                    Sprite = TexturePack.TilesUnites[0]; // mettre la texure 
                     break;
                 case Type_unite.rapide:
                     Attaque = 1;
                     Defense = 1;
                     vitesse = 4;
-                    Sprite = null;//mettre texutre
+                    Sprite = TexturePack.TilesUnites[1]; //mettre texutre
                     break;
                 case Type_unite.lourde:
                     Attaque = 3;
                     Defense = 3;
                     vitesse = 1;
-                    Sprite = null; // mettre texture
+                    Sprite = TexturePack.TilesUnites[2]; // mettre texture
                     break;
             }
-
-
-
             this.Joueur = joueur;
-            this.Position = position;
+ 
+            this.Position.X = origine.X +position.X;
+            this.Position.Y = origine.Y +position.Y;
 
             this.Type = type;
-
+            this.Map = map;
+            this.IsSelected = false;
         }
 
-        public void Deplacement(int x, int y)
+        public void Deplacement(Point p)
         {
-
-            Position.X = x;
-            Position.Y = y;
+            Position.X = p.X;
+            Position.Y = p.Y;
         }
 
         public bool Is_inbounds(Vector2 destination)//destination in bounds (a la souris)
@@ -82,22 +97,55 @@ namespace MLPproject
                     if (Math.Abs(destination.X - Position.X) < 4 || Math.Abs(destination.X - Position.X) < 4)
                         return false;
                     break;
+
                 case Type_unite.lourde:
                     if (Math.Abs(destination.X - Position.X) < 1 || Math.Abs(destination.X - Position.X) < 1)
                         return false;
                     break;
-
             }
 
             return true;
         }
 
-
         public void Update(GameTime gametime)
         {
+            // On va permettre la selection de l'unité
+            if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
+            {
+                if (MouseOnTile())
+                {
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
+                    IsSelected = true;
+                }
+                else
+                {
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(defaultColor);
+                    IsSelected = false;
+                }
+            }
 
+            if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
+            {
+                if (IsSelected)
+                {
+                    Map.GetTile((int)Position.X -origine.X, (int)Position.Y-origine.Y).SetColor(defaultColor);
+                    Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
+                }
+            }
+        }
 
+        public bool MouseOnTile()
+        {
+            return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
+        }
 
+        public Point TilePos(Point p)
+        {
+            int x = (p.X - (p.X % Sprite.Width));
+            int y = (p.Y - (p.Y % Sprite.Height));
+
+            return new Point(x, y);
         }
 
         public void Draw(SpriteBatch spritebatch)
@@ -105,7 +153,6 @@ namespace MLPproject
             spritebatch.Begin();
             spritebatch.Draw(Sprite, Position, Color.White);
             spritebatch.End();
-
         }
 
     }
