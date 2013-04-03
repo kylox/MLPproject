@@ -47,6 +47,7 @@ namespace MLPproject
 
         public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
+            this.Type = type;
             switch (Type)
             {
                 case Type_unite.legere:
@@ -69,11 +70,11 @@ namespace MLPproject
                     break;
             }
             this.Joueur = joueur;
- 
-            this.Position.X = origine.X +position.X;
-            this.Position.Y = origine.Y +position.Y;
 
-            this.Type = type;
+            this.Position.X = origine.X + position.X;
+            this.Position.Y = origine.Y + position.Y;
+
+
             this.Map = map;
             this.IsSelected = false;
         }
@@ -128,11 +129,13 @@ namespace MLPproject
             {
                 if (IsSelected)
                 {
-                    Map.GetTile((int)Position.X -origine.X, (int)Position.Y-origine.Y).SetColor(defaultColor);
+                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(defaultColor);
                     Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
                     Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
                 }
             }
+
+
         }
 
         public bool MouseOnTile()
@@ -152,6 +155,36 @@ namespace MLPproject
         {
             spritebatch.Begin();
             spritebatch.Draw(Sprite, Position, Color.White);
+            if (this.IsSelected == true)
+            {
+                if (Joueur == 1)
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(10, 500), Color.White);
+                if (Joueur == 2)
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(725, 500), Color.White);
+
+                switch (Type)
+                {
+
+
+
+                    case Type_unite.legere:
+                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32*2, (int)Position.Y - 32*2, 160, 160), Color.FromNonPremultiplied(204,255,255,100));
+                        break;
+
+                    case Type_unite.rapide:
+                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 4, (int)Position.Y - 32 * 4, 288, 288), Color.FromNonPremultiplied(204, 255, 255, 100));
+                        break;
+
+                    case Type_unite.lourde:
+                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 96, 96), Color.FromNonPremultiplied(204, 255, 255, 100));
+                        break;
+
+
+
+                }
+
+            }
+
             spritebatch.End();
         }
 

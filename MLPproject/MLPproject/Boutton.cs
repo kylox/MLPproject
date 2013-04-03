@@ -43,9 +43,6 @@ namespace MLPproject
             }
 
             spritebatch.End();
-
-
-
         }
 
     }
