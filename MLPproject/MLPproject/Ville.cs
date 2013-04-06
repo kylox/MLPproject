@@ -31,7 +31,6 @@ namespace MLPproject
         Color defaultColor = Color.White;
         Color texte_selec = Color.Red;
         List<string> type_unite;
-
         Joueur Joueur;
 
         public Ville(Joueur joueur, Vector2 position, Map map)
@@ -78,7 +77,7 @@ namespace MLPproject
                             switch (y)
                             {
                                 case 250:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.legere, Map, game));
+                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2((this.Position.X) -Map.Origine.X + 32, (this.Position.Y)-Map.Origine.Y), Type_unite.legere, Map, game));
                                     Joueur.Argent -= 100;
                                     break;
                                 case 300:

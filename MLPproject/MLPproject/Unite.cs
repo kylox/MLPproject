@@ -160,8 +160,8 @@ namespace MLPproject
         }
         public Point TilePos(Point p)
         {
-            int x = (p.X - (p.X % 32));
-            int y = (p.Y - (p.Y % 32));
+            int x = (p.X - (p.X % Sprite.Width));
+            int y = (p.Y - (p.Y % Sprite.Height));
             return new Point(x, y);
         }
 
