@@ -79,12 +79,15 @@ namespace MLPproject
                             {
                                 case 250:
                                     Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.legere, Map, game));
+                                        Joueur.Argent -= 100;
                                     break;
                                 case 300:
                                     Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.rapide, Map, game));
+                                    Joueur.Argent -= 200;
                                     break;
                                 case 350:
                                     Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.lourde, Map, game));
+                                    Joueur.Argent -= 300;
                                     break;
                             }
                         }

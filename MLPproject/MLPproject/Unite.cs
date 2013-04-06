@@ -44,7 +44,7 @@ namespace MLPproject
             get { return IsMoved; }
             set { IsMoved = value; }
         }
-        public Unite(Joueur joueur, Vector2 position, Type_unite type, Map map,Game1 game)
+        public Unite(Joueur joueur, Vector2 position, Type_unite type, Map map, Game1 game)
         {
             this.Game = game;
             this.Joueur = joueur;
@@ -143,7 +143,6 @@ namespace MLPproject
         {
             int x = (p.X - (p.X % 32));
             int y = (p.Y - (p.Y % 32));
-
             return new Point(x, y);
         }
         public void Draw(SpriteBatch spritebatch)
@@ -163,26 +162,23 @@ namespace MLPproject
                 #endregion
 
                 #region draw de la surface de mouvement
-                if(
-                switch (Type)
-                {
+                if (Game.Phase == Phase_de_jeu.deplacement)
+                    switch (Type)
+                    {
+                        case Type_unite.legere:
+                            spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 2, (int)Position.Y - 32 * 2, 160, 160), Color.FromNonPremultiplied(204, 255, 255, 100));
+                            break;
 
-                    case Type_unite.legere:
-                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 2, (int)Position.Y - 32 * 2, 160, 160), Color.FromNonPremultiplied(204, 255, 255, 100));
-                        break;
+                        case Type_unite.rapide:
+                            spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 4, (int)Position.Y - 32 * 4, 288, 288), Color.FromNonPremultiplied(204, 255, 255, 100));
+                            break;
 
-                    case Type_unite.rapide:
-                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 4, (int)Position.Y - 32 * 4, 288, 288), Color.FromNonPremultiplied(204, 255, 255, 100));
-                        break;
-
-                    case Type_unite.lourde:
-                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 96, 96), Color.FromNonPremultiplied(204, 255, 255, 100));
-                        break;
-                }
+                        case Type_unite.lourde:
+                            spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 96, 96), Color.FromNonPremultiplied(204, 255, 255, 100));
+                            break;
+                    }
                 #endregion
-
             }
         }
-
     }
 }

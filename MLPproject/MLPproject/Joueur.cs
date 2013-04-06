@@ -40,7 +40,7 @@ namespace MLPproject
             Argent = 500;
             this._ID = id;
             this.Map = map;
-
+            list_unite = new List<Unite>();
             if (id == 1)
                 list_ville = new List<Ville>() { new Ville(this, new Vector2(0, 0), map) };
             else
