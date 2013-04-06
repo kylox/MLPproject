@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MLPproject
 {
-    enum Phase_de_jeu
+   public enum Phase_de_jeu
     {
         ravitaillement,
         deplacement,
@@ -26,6 +26,11 @@ namespace MLPproject
         Joueur J1;
         Joueur J2;
         Phase_de_jeu nouvelle_phase;
+        public Phase_de_jeu Phase
+        {
+            get { return nouvelle_phase; }
+            set { nouvelle_phase = value; }
+        }
         Phase_de_jeu old_phase;
         int joueur;
         int _joueur; //ne pas faire gaffe permet juste de dessiner le numero du joueur
@@ -72,43 +77,55 @@ namespace MLPproject
         {
             switch (nouvelle_phase)
             {
+                #region ravitaillement
                 case Phase_de_jeu.ravitaillement:
-
+                    
                     if (old_phase != nouvelle_phase)
-                    {
                         foreach (Ville ville in J.Villes)
                             J.Argent += 100;
 
-                       
-                    }
-                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
+                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour !
                         nouvelle_phase = Phase_de_jeu.deplacement;
-                   
+
                     old_phase = nouvelle_phase;
 
                     break;
-
+                #endregion
+                #region deplacement
                 case Phase_de_jeu.deplacement:
-                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
+
+                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
+                    {
                         nouvelle_phase = Phase_de_jeu.attaque;
+                        foreach (Unite unite in J1.Unites)
+                        {
+                            unite.isMoved = false;//les unite pourront etre rebouger au prochain tour
+                            unite.isSelected = false;//les unite pourront etre rebouger au prochain tour
+                        }
+                    }
 
                     break;
-
+                #endregion
+                #region attaque
                 case Phase_de_jeu.attaque:
-                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
+                    if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
                     {
-                        nouvelle_phase = Phase_de_jeu.ravitaillement ;
-                        joueur = (joueur++) % 2;
-                        _joueur = joueur+1;
+                        nouvelle_phase = Phase_de_jeu.ravitaillement;
+                        if (joueur == 0)
+                            joueur = 1;
+                        else
+                            joueur = 0;
+                        _joueur = joueur + 1;
                     }
                     break;
+                #endregion
             }
         }
         protected override void Update(GameTime gameTime)
         {
             Data.Update();
             J1.Update();
-            unite_J1.Update(gameTime);
+            unite_J1.Update(gameTime,this);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -121,7 +138,7 @@ namespace MLPproject
 
             #endregion
 
-            
+
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
@@ -134,7 +151,7 @@ namespace MLPproject
             map.Draw(spriteBatch);
             J1.Draw(spriteBatch);
             J2.Draw(spriteBatch);
-            spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25,0),Color.White);
+            spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25, 0), Color.White);
             spriteBatch.DrawString(TexturePack.font, "press spacebar when you have finish your turn", new Vector2(100 + 5 * 11 + 30 + 25, 725), Color.White);
 
             spriteBatch.End();

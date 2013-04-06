@@ -35,7 +35,6 @@ namespace MLPproject
 
         List<Unite> list_unite;
         List<Ville> list_ville;
-        Vector2 Position;
         Map Map;
 
         public Joueur(int id, Map map)

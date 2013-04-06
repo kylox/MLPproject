@@ -15,14 +15,19 @@ namespace MLPproject
     class Ville
     {
         Vector2 Position;
+        bool IsSelected;
+
+
         public Ville(int joueur, Vector2 position, Map map )
         {
-            this.Position.X = position.X + map.Origine.X;
-            this.Position.Y = position.Y + map.Origine.Y;
+            this.Position.X = position.X*32 + map.Origine.X;
+            this.Position.Y = position.Y*32 + map.Origine.Y;
         }
 
-        public void Update()
+        public void Update(Game1 game)
         {
+
+
 
         }
 

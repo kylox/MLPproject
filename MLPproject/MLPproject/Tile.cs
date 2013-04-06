@@ -25,14 +25,12 @@ namespace MLPproject
     {
         public Vector2 Position;
         Color Color;
-        int Joueur;
         Texture2D texture;
         public Type_tile Type {get; private set; }
 
         public Tile(Type_tile type, int x, int y)
         {
             Color = Color.White;
-            Joueur = 0;
             this.Type = type;
             // On charge la texture adaptée à la tile en fonction de son type
             texture = TexturePack.TilesTexture[(int)type];

@@ -26,7 +26,7 @@ namespace MLPproject
         int Joueur;
         int vitesse;
         int pv;
-        bool IsSelected;
+        bool IsSelected,IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
         Point origine = new Point(150, 120);
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
@@ -39,9 +39,15 @@ namespace MLPproject
             get { return IsSelected; }
             set { IsSelected = value; }
         }
+        public bool isMoved
+        {
+            get { return IsMoved; }
+            set { IsMoved = value; }
+        }
         public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
             this.Type = type;
+            IsMoved = false;
             switch (Type)
             {
                 case Type_unite.legere:
@@ -99,31 +105,35 @@ namespace MLPproject
 
             return true;
         }
-        public void Update(GameTime gametime)
+        public void Update(GameTime gametime,Game1 game)
         {
             // On va permettre la selection de l'unité
-            #region changement couleur tile si untié selectione
-            if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
+            #region selection + deplacement
+            if (game.Phase == Phase_de_jeu.deplacement)
             {
-                if (MouseOnTile())
+                if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
                 {
-                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
-                    IsSelected = true;
+                    if (MouseOnTile())
+                    {
+                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
+                        IsSelected = true;
+                    }
+                    else
+                    {
+                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
+                        IsSelected = false;
+                    }
                 }
-                else
-                {
-                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
-                    IsSelected = false;
-                }
-            }
 
-            if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
-            {
-                if (IsSelected)
+                if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
                 {
-                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
-                    Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
-                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
+                    if (IsSelected && !IsMoved)
+                    {
+                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
+                        Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
+                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
+                        IsMoved = false;
+                    }
                 }
             }
             #endregion
