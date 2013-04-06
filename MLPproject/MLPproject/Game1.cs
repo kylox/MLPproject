@@ -45,7 +45,7 @@ namespace MLPproject
 
                 // Petite modification pour que ça rentre dans mon écran ^^ (SDanTe)
                 PreferredBackBufferWidth = 16 * 32 + 200 + 11 * 12,
-                PreferredBackBufferHeight = 16 * 32 + 300
+                PreferredBackBufferHeight = 768
             };
             Content.RootDirectory = "Content";
         }
