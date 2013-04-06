@@ -14,7 +14,7 @@ namespace MLPproject
     {
         public static List<Texture2D> TilesTexture { get; private set; }
         public static List<Texture2D> TilesUnites { get; private set; }
-        public static Texture2D pixel, fond, bordure, page;
+        public static Texture2D pixel, fond, bordure, page, ville;
         public static SpriteFont font;
         public static void Load(ContentManager content)
         {
@@ -23,6 +23,7 @@ namespace MLPproject
             bordure = content.Load<Texture2D>("bordure");
             page = content.Load<Texture2D>("page1");
             font = content.Load<SpriteFont>("spritefont");
+            ville = content.Load<Texture2D>("chateau");
             TilesTexture = new List<Texture2D>
             {
                 content.Load<Texture2D>("EAU"),

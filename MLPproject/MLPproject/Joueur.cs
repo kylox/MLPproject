@@ -44,7 +44,11 @@ namespace MLPproject
             this._ID = id;
             this.Map = map;
             list_unite = new List<Unite>();
-            list_ville = new List<Ville>();
+            if (id == 1)
+                list_ville = new List<Ville>() { new Ville(1, new Vector2(0, 0), map) };
+            else
+                list_ville = new List<Ville>() { new Ville(1, new Vector2(15, 15), map) };
+
         }
         public void intersect()
         {
@@ -63,6 +67,9 @@ namespace MLPproject
                 spritebatch.DrawString(TexturePack.font, "argent : " + Argent, new Vector2(0, 150), Color.White);
             else
                 spritebatch.DrawString(TexturePack.font, "argent : " + Argent, new Vector2(725, 150), Color.White);
+
+            foreach (Ville ville in list_ville)
+                ville.Draw(spritebatch);
         }
     }
 }

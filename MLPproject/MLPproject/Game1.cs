@@ -74,12 +74,17 @@ namespace MLPproject
             {
                 case Phase_de_jeu.ravitaillement:
 
-                    foreach (Ville ville in J.Villes)
-                        J.Argent += 100;
+                    if (old_phase != nouvelle_phase)
+                    {
+                        foreach (Ville ville in J.Villes)
+                            J.Argent += 100;
 
+                       
+                    }
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
                         nouvelle_phase = Phase_de_jeu.deplacement;
-
+                   
+                    old_phase = nouvelle_phase;
 
                     break;
 

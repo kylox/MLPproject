@@ -10,3 +10,4 @@ Content\bordure.xnb
 Content\page.xnb
 Content\page1.xnb
 Content\SpriteFont.xnb
+Content\chateau.xnb

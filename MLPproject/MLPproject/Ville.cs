@@ -14,14 +14,21 @@ namespace MLPproject
 {
     class Ville
     {
-        public Ville(int joueur, Vector2 position)
+        Vector2 Position;
+        public Ville(int joueur, Vector2 position, Map map )
         {
-
+            this.Position.X = position.X + map.Origine.X;
+            this.Position.Y = position.Y + map.Origine.Y;
         }
 
         public void Update()
         {
 
+        }
+
+        public void Draw(SpriteBatch spritebatch)
+        {
+            spritebatch.Draw(TexturePack.ville, Position, Color.White);
         }
 
     }
