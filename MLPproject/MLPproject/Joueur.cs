@@ -16,10 +16,9 @@ namespace MLPproject
     {
         public int Argent { get; set; }
         int _ID;
-
-        int ID
+        public int ID
         {
-            get { return ID; }
+            get { return _ID; }
             set { _ID = value; }
         }
         public List<Unite> Unites
@@ -32,7 +31,6 @@ namespace MLPproject
             get { return list_ville; }
             set { list_ville = value; }
         }
-
         List<Unite> list_unite;
         List<Ville> list_ville;
         Map Map;
@@ -43,18 +41,10 @@ namespace MLPproject
             this._ID = id;
             this.Map = map;
 
-            list_unite = new List<Unite>() { new Unite(2, new Vector2(32 * 5, 32 * 5), Type_unite.rapide, map) };
-
-
             if (id == 1)
-                list_ville = new List<Ville>() { new Ville(1, new Vector2(0, 0), map) };
-
+                list_ville = new List<Ville>() { new Ville(this, new Vector2(0, 0), map) };
             else
-            {
-                list_ville = new List<Ville>() { new Ville(1, new Vector2(15, 15), map) };
-               
-            }
-
+                list_ville = new List<Ville>() { new Ville(this, new Vector2(15, 15), map) };
         }
         public void intersect()
         {
@@ -63,11 +53,11 @@ namespace MLPproject
         }
         public void Update(GameTime gametime, Game1 game)
         {
-           
-                foreach (Unite unit in list_unite)
-                    unit.Update(gametime, game);
+            foreach (Unite unit in list_unite)
+                unit.Update(gametime, game);
 
-
+            foreach (Ville ville in list_ville)
+                ville.Update(game);
         }
         public void Draw(SpriteBatch spritebatch)
         {

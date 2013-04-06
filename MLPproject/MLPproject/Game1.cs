@@ -85,9 +85,15 @@ namespace MLPproject
                             J.Argent += 100;
 
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour !
+                    {
+                        foreach (Ville ville in J.Villes)
+                        {
+                            ville.isPlayable = true;
+                            ville.isSelected = false;
+                        }
                         nouvelle_phase = Phase_de_jeu.deplacement;
-
-                    old_phase = nouvelle_phase;
+                    }
+                    old_phase = nouvelle_phase;//evite que les sousou rentre a fond dans les caisse
 
                     break;
                 #endregion
@@ -124,17 +130,24 @@ namespace MLPproject
         protected override void Update(GameTime gameTime)
         {
             Data.Update();
-            J1.Update(gameTime,this);
-            J2.Update(gameTime, this);
+
+           
+           
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
             #region boucle de jeu
             if (joueur == 0)
+            {
+                J1.Update(gameTime, this);
                 jeux(J1);
+            }
             else
+            {
+                J2.Update(gameTime, this);
                 jeux(J2);
+            }
 
             #endregion
 

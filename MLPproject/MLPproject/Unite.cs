@@ -23,7 +23,6 @@ namespace MLPproject
     {
         int Attaque;
         int Defense;
-        int Joueur;
         int vitesse;
         int pv;
         bool IsSelected, IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
@@ -33,6 +32,8 @@ namespace MLPproject
         Vector2 Position;
         Texture2D Sprite;
         Map Map;
+        Joueur Joueur;
+        Game1 Game;
         public bool isSelected
         {
             get { return IsSelected; }
@@ -43,8 +44,10 @@ namespace MLPproject
             get { return IsMoved; }
             set { IsMoved = value; }
         }
-        public Unite(int joueur, Vector2 position, Type_unite type, Map map)
+        public Unite(Joueur joueur, Vector2 position, Type_unite type, Map map,Game1 game)
         {
+            this.Game = game;
+            this.Joueur = joueur;
             this.Type = type;
             IsMoved = false;
             switch (Type)
@@ -68,7 +71,6 @@ namespace MLPproject
                     Sprite = TexturePack.TilesUnites[2]; // mettre texture
                     break;
             }
-            this.Joueur = joueur;
             this.Position.X = map.Origine.X + position.X;
             this.Position.Y = map.Origine.Y + position.Y;
             this.Map = map;
@@ -146,18 +148,22 @@ namespace MLPproject
         }
         public void Draw(SpriteBatch spritebatch)
         {
-           
-            spritebatch.Draw(Sprite, Position, Color.White);
+            if (Joueur.ID == 1)
+                spritebatch.Draw(Sprite, Position, Color.Blue);
+            else
+                spritebatch.Draw(Sprite, Position, Color.Red);
+
             if (this.IsSelected == true)
             {
                 #region draw caracteristique de l'unité selectionné
-                if (Joueur == 1)
+                if (Joueur.ID == 1)
                     spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(10, 500), Color.White);
-                if (Joueur == 2)
+                if (Joueur.ID == 2)
                     spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(725, 500), Color.White);
                 #endregion
 
                 #region draw de la surface de mouvement
+                if(
                 switch (Type)
                 {
 
