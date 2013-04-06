@@ -59,7 +59,10 @@ namespace MLPproject
         }
         public void Draw(SpriteBatch spritebatch)
         {
-
+            if (_ID == 1)
+                spritebatch.DrawString(TexturePack.font, "argent : " + Argent, new Vector2(0, 150), Color.White);
+            else
+                spritebatch.DrawString(TexturePack.font, "argent : " + Argent, new Vector2(725, 150), Color.White);
         }
     }
 }

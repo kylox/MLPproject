@@ -68,7 +68,7 @@ namespace MLPproject
         {
 
         }
-        protected void jeux(Joueur J)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
+        void jeux(Joueur J)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
         {
             switch (nouvelle_phase)
             {
@@ -84,7 +84,6 @@ namespace MLPproject
                     break;
 
                 case Phase_de_jeu.deplacement:
-
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
                         nouvelle_phase = Phase_de_jeu.attaque;
 
@@ -93,8 +92,9 @@ namespace MLPproject
                 case Phase_de_jeu.attaque:
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
                     {
-                        nouvelle_phase = Phase_de_jeu.attaque;
+                        nouvelle_phase = Phase_de_jeu.ravitaillement ;
                         joueur = (joueur++) % 2;
+                        _joueur = joueur+1;
                     }
                     break;
             }
@@ -116,7 +116,7 @@ namespace MLPproject
 
             #endregion
 
-            _joueur = joueur++;
+            
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
@@ -128,9 +128,9 @@ namespace MLPproject
             spriteBatch.Draw(TexturePack.bordure, new Rectangle(map.Origine.X, map.Origine.Y, 16 * 32, 16 * 32), Color.FromNonPremultiplied(255, 204, 51, 50));
             map.Draw(spriteBatch);
             J1.Draw(spriteBatch);
-            spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase de" + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25,0),Color.White);
+            J2.Draw(spriteBatch);
+            spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25,0),Color.White);
             spriteBatch.DrawString(TexturePack.font, "press spacebar when you have finish your turn", new Vector2(100 + 5 * 11 + 30 + 25, 725), Color.White);
-            
 
             spriteBatch.End();
 
