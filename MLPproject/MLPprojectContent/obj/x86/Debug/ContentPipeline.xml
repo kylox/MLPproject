@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\EAU.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\EAU.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
     </Item>
     <Item>
       <Source>HERBE.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\HERBE.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\HERBE.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
     </Item>
     <Item>
       <Source>leger.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\leger.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\leger.xnb</Output>
+      <Time>2013-04-06T20:43:14.4722652+02:00</Time>
     </Item>
     <Item>
       <Source>lourd.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\lourd.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\lourd.xnb</Output>
+      <Time>2013-04-06T20:43:14.4722652+02:00</Time>
     </Item>
     <Item>
       <Source>ROCHER.png</Source>
@@ -43,8 +43,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\ROCHER.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\ROCHER.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
     </Item>
     <Item>
       <Source>soutien.png</Source>
@@ -52,8 +52,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\soutien.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\soutien.xnb</Output>
+      <Time>2013-04-06T20:43:14.5034653+02:00</Time>
     </Item>
     <Item>
       <Source>pixel.png</Source>
@@ -61,8 +61,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\pixel.xnb</Output>
-      <Time>2013-04-01T11:22:15.1114374+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\pixel.xnb</Output>
+      <Time>2013-04-06T20:43:14.5034653+02:00</Time>
     </Item>
     <Item>
       <Source>fond.jpg</Source>
@@ -70,8 +70,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\fond.xnb</Output>
-      <Time>2013-04-01T13:34:07.9533201+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\fond.xnb</Output>
+      <Time>2013-04-06T20:43:14.4722652+02:00</Time>
     </Item>
     <Item>
       <Source>bordure.jpg</Source>
@@ -79,8 +79,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\bordure.xnb</Output>
-      <Time>2013-04-01T13:40:10.2781869+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\bordure.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
     </Item>
     <Item>
       <Source>page.png</Source>
@@ -88,8 +88,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\page.xnb</Output>
-      <Time>2013-04-01T13:48:50.0886223+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\page.xnb</Output>
+      <Time>2013-04-06T20:43:14.4878652+02:00</Time>
     </Item>
     <Item>
       <Source>page1.png</Source>
@@ -97,17 +97,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\page1.xnb</Output>
-      <Time>2013-04-01T14:24:10.071194+02:00</Time>
-    </Item>
-    <Item>
-      <Source>SpriteFont.spritefont</Source>
-      <Name>SpriteFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\SpriteFont.xnb</Output>
-      <Time>2013-04-01T12:10:39.1558466+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\page1.xnb</Output>
+      <Time>2013-04-06T20:43:14.4878652+02:00</Time>
     </Item>
     <Item>
       <Source>chateau.png</Source>
@@ -115,8 +106,17 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\chateau.xnb</Output>
-      <Time>2013-04-06T11:48:11.5374447+02:00</Time>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\chateau.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SpriteFont.spritefont</Source>
+      <Name>SpriteFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\SpriteFont.xnb</Output>
+      <Time>2013-04-06T20:43:14.4254651+02:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -124,39 +124,39 @@
       <TargetProfile>HiDef</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPprojectContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\gaudro_m\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPprojectContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPprojectContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Sagot_A\Desktop\MLPproject\MLPproject\MLPproject\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T12:41:18+02:00</Value>
+        <Value>2010-08-23T13:41:18+02:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-08-03T17:33:58.6222029+02:00</Value>
+        <Value>2012-12-02T20:49:40.8034162+01:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

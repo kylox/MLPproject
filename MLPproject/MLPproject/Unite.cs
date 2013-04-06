@@ -44,6 +44,7 @@ namespace MLPproject
             get { return IsMoved; }
             set { IsMoved = value; }
         }
+
         public Unite(Joueur joueur, Vector2 position, Type_unite type, Map map, Game1 game)
         {
             this.Game = game;
@@ -126,10 +127,28 @@ namespace MLPproject
                 {
                     if (IsSelected && !IsMoved)
                     {
-                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
-                        Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
-                        Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
-                        IsMoved = false;
+                        bool tupeux = false;
+                        int ixe = (int)Math.Abs(Data.mouseState.X - Position.X);
+                        int ygrec = (int)Math.Abs(Data.mouseState.Y - Position.Y);
+                        switch (Type)
+                        {
+                            case Type_unite.legere:
+                                tupeux = (ixe / 32 < 2) && (ygrec / 32 < 2);
+                                break;
+                            case Type_unite.rapide:
+                                tupeux = (ixe / 32 < 4) && (ygrec / 32 < 4);
+                                break;
+                            case Type_unite.lourde:
+                                tupeux = (ixe / 32 < 1) && (ygrec / 32 < 1);
+                                break;
+                        }
+                        if (tupeux)
+                        {
+                            Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
+                            Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
+                            Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
+                            IsMoved = true;
+                        }
                     }
                 }
             }
@@ -145,6 +164,7 @@ namespace MLPproject
             int y = (p.Y - (p.Y % 32));
             return new Point(x, y);
         }
+
         public void Draw(SpriteBatch spritebatch)
         {
             if (Joueur.ID == 1)
