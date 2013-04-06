@@ -111,16 +111,17 @@ namespace MLPproject
         public void Update(GameTime gametime)
         {
             // On va permettre la selection de l'unité
+            #region changement couleur tile si untié selectione
             if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
             {
                 if (MouseOnTile())
                 {
-                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
+                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
                     IsSelected = true;
                 }
                 else
                 {
-                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(defaultColor);
+                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
                     IsSelected = false;
                 }
             }
@@ -129,12 +130,12 @@ namespace MLPproject
             {
                 if (IsSelected)
                 {
-                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(defaultColor);
+                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(defaultColor);
                     Deplacement(TilePos(new Point(Data.mouseState.X, Data.mouseState.Y)));
-                    Map.GetTile((int)Position.X - origine.X, (int)Position.Y - origine.Y).SetColor(selectionColor);
+                    Map.GetTile((int)Position.X - Map.Origine.X, (int)Position.Y - Map.Origine.Y).SetColor(selectionColor);
                 }
             }
-
+            #endregion
 
         }
 
@@ -155,20 +156,22 @@ namespace MLPproject
         {
             spritebatch.Begin();
             spritebatch.Draw(Sprite, Position, Color.White);
+
             if (this.IsSelected == true)
             {
+                #region draw caracteristique de l'unité selectionné
                 if (Joueur == 1)
                     spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(10, 500), Color.White);
                 if (Joueur == 2)
                     spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(725, 500), Color.White);
+                #endregion
 
+                #region draw de la surface de mouvement
                 switch (Type)
                 {
-
-
-
+                  
                     case Type_unite.legere:
-                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32*2, (int)Position.Y - 32*2, 160, 160), Color.FromNonPremultiplied(204,255,255,100));
+                        spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 2, (int)Position.Y - 32 * 2, 160, 160), Color.FromNonPremultiplied(204, 255, 255, 100));
                         break;
 
                     case Type_unite.rapide:
@@ -178,10 +181,8 @@ namespace MLPproject
                     case Type_unite.lourde:
                         spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 96, 96), Color.FromNonPremultiplied(204, 255, 255, 100));
                         break;
-
-
-
                 }
+                #endregion
 
             }
 

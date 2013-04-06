@@ -19,6 +19,13 @@ namespace MLPproject
                             tileWidth = TexturePack.TilesTexture[0].Width,
                             tileHeight = TexturePack.TilesTexture[0].Height;
         Point origine = new Point(150, 120);
+
+        public Point Origine
+        {
+            get { return origine; }
+            set { origine = value; }
+        }
+
         public Tile[,] plateau_tile;
         public List<Unite> listUnits = new List<Unite>();
         public List<Ville> listVilles = new List<Ville>();
