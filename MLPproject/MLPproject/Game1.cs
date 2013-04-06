@@ -64,7 +64,7 @@ namespace MLPproject
 
             joueur = 0;
 
-            unite_J1 = new Unite(2, new Vector2(32 * 5, 32 * 5), Type_unite.rapide, map);
+           
 
             nouvelle_phase = Phase_de_jeu.ravitaillement;
             old_phase = Phase_de_jeu.ravitaillement;
@@ -124,8 +124,8 @@ namespace MLPproject
         protected override void Update(GameTime gameTime)
         {
             Data.Update();
-            J1.Update();
-            unite_J1.Update(gameTime,this);
+            J1.Update(gameTime,this);
+            J2.Update(gameTime, this);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
@@ -153,10 +153,7 @@ namespace MLPproject
             J2.Draw(spriteBatch);
             spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25, 0), Color.White);
             spriteBatch.DrawString(TexturePack.font, "press spacebar when you have finish your turn", new Vector2(100 + 5 * 11 + 30 + 25, 725), Color.White);
-
             spriteBatch.End();
-
-            unite_J1.Draw(spriteBatch);
 
             base.Draw(gameTime);
         }

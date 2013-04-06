@@ -26,8 +26,7 @@ namespace MLPproject
         int Joueur;
         int vitesse;
         int pv;
-        bool IsSelected,IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
-        Point origine = new Point(150, 120);
+        bool IsSelected, IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
         Type_unite Type;
@@ -70,11 +69,8 @@ namespace MLPproject
                     break;
             }
             this.Joueur = joueur;
-
-            this.Position.X = origine.X + position.X;
-            this.Position.Y = origine.Y + position.Y;
-
-
+            this.Position.X = map.Origine.X + position.X;
+            this.Position.Y = map.Origine.Y + position.Y;
             this.Map = map;
             this.IsSelected = false;
         }
@@ -105,7 +101,7 @@ namespace MLPproject
 
             return true;
         }
-        public void Update(GameTime gametime,Game1 game)
+        public void Update(GameTime gametime, Game1 game)
         {
             // On va permettre la selection de l'unité
             #region selection + deplacement
@@ -124,7 +120,6 @@ namespace MLPproject
                         IsSelected = false;
                     }
                 }
-
                 if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
                 {
                     if (IsSelected && !IsMoved)
@@ -137,7 +132,6 @@ namespace MLPproject
                 }
             }
             #endregion
-
         }
         public bool MouseOnTile()
         {
@@ -145,16 +139,15 @@ namespace MLPproject
         }
         public Point TilePos(Point p)
         {
-            int x = (p.X - (p.X % Sprite.Width));
-            int y = (p.Y - (p.Y % Sprite.Height));
+            int x = (p.X - (p.X % 32));
+            int y = (p.Y - (p.Y % 32));
 
             return new Point(x, y);
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Begin();
+           
             spritebatch.Draw(Sprite, Position, Color.White);
-
             if (this.IsSelected == true)
             {
                 #region draw caracteristique de l'unité selectionné
@@ -167,7 +160,7 @@ namespace MLPproject
                 #region draw de la surface de mouvement
                 switch (Type)
                 {
-                  
+
                     case Type_unite.legere:
                         spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 * 2, (int)Position.Y - 32 * 2, 160, 160), Color.FromNonPremultiplied(204, 255, 255, 100));
                         break;
@@ -183,8 +176,6 @@ namespace MLPproject
                 #endregion
 
             }
-
-            spritebatch.End();
         }
 
     }

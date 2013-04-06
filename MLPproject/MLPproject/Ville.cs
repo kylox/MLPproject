@@ -17,7 +17,6 @@ namespace MLPproject
         Vector2 Position;
         bool IsSelected;
 
-
         public Ville(int joueur, Vector2 position, Map map )
         {
             this.Position.X = position.X*32 + map.Origine.X;
