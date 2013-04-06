@@ -19,15 +19,12 @@ namespace MLPproject
         roche,
         herbe
     }
-
-
     public class Tile
     {
         public Vector2 Position;
         Color Color;
         Texture2D texture;
         public Type_tile Type {get; private set; }
-
         public Tile(Type_tile type, int x, int y)
         {
             Color = Color.White;
@@ -37,19 +34,13 @@ namespace MLPproject
             Position = new Vector2(x, y);
 
         }
-
-        // Permet de modifier la couleur de fond de la tile 
         public void SetColor(Color color)
         {
             this.Color = color;
-        }
-
+        } // Permet de modifier la couleur de fond de la tile 
         public void Draw(SpriteBatch spritebatch)
         {
            spritebatch.Draw(texture,new Vector2(Position.X,Position.Y), this.Color);
         }
-
-
-
     }
 }

@@ -62,11 +62,7 @@ namespace MLPproject
             map = new Map();
             J1 = new Joueur(1, map);
             J2 = new Joueur(2, map);
-
             joueur = 0;
-
-           
-
             nouvelle_phase = Phase_de_jeu.ravitaillement;
             old_phase = Phase_de_jeu.ravitaillement;
         }
@@ -132,9 +128,6 @@ namespace MLPproject
         {
             Data.Update();
 
-           
-           
-
             if (Data.keyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
 
@@ -165,6 +158,7 @@ namespace MLPproject
             map.Draw(spriteBatch);
             J1.Draw(spriteBatch);
             J2.Draw(spriteBatch);
+            spriteBatch.DrawString(TexturePack.font, Data.mouseState.X + "    " + Data.mouseState.Y, new Vector2(750, 0), Color.Red);
             spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25, 0), Color.White);
             spriteBatch.DrawString(TexturePack.font, "press spacebar when you have finish your turn", new Vector2(100 + 5 * 11 + 30 + 25, 725), Color.White);
             spriteBatch.End();

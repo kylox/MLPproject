@@ -25,7 +25,6 @@ namespace MLPproject
             get { return origine; }
             set { origine = value; }
         }
-
         public Tile[,] plateau_tile;
         public List<Unite> listUnits = new List<Unite>();
         public List<Ville> listVilles = new List<Ville>();
@@ -48,15 +47,13 @@ namespace MLPproject
                 for (int j = 0; j < mapWidth; j++)
                     plateau_tile[j, i].Draw(spritebatch);
         }
-
-        // Retourne la tile en fonction de la position
         public Tile GetTile(int x, int y)
         {
             int i = (x - (x % tileWidth)) / tileWidth;
             int j = (y - (y % tileHeight)) / tileHeight;
 
             return plateau_tile[i, j];
-        }
+        } // Retourne la tile en fonction de la position
         public Point MouseToMap()
         {
             return ScreenToMap(new Point(Data.mouseState.X, Data.mouseState.Y));
