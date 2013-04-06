@@ -48,6 +48,7 @@ namespace MLPproject
                 PreferredBackBufferHeight = 768
             };
             Content.RootDirectory = "Content";
+
         }
         protected override void Initialize()
         {
@@ -134,7 +135,7 @@ namespace MLPproject
            
            
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Data.keyboardState.IsKeyDown(Keys.Escape))
                 this.Exit();
 
             #region boucle de jeu

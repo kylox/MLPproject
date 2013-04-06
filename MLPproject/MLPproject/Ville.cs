@@ -72,14 +72,14 @@ namespace MLPproject
                 {
                     foreach (string S in type_unite)
                     {
-                        if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed) &&
-                            new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y + 10, 100, 5)))
+                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed) &&
+                            new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y, 100, 20)))
                         {
                             switch (y)
                             {
                                 case 250:
                                     Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.legere, Map, game));
-                                        Joueur.Argent -= 100;
+                                    Joueur.Argent -= 100;
                                     break;
                                 case 300:
                                     Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.rapide, Map, game));
@@ -90,6 +90,7 @@ namespace MLPproject
                                     Joueur.Argent -= 300;
                                     break;
                             }
+                            Isplayable = false;
                         }
                         y += 50;
                     }
