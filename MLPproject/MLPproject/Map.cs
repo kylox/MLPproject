@@ -57,7 +57,6 @@ namespace MLPproject
 
             return plateau_tile[i, j];
         }
-
         public Point MouseToMap()
         {
             return ScreenToMap(new Point(Data.mouseState.X, Data.mouseState.Y));
@@ -74,7 +73,6 @@ namespace MLPproject
             p.Y = origine.Y + p.Y * tileHeight;
             return p;
         }
-
         public bool ValidCoordinates(int x, int y)
         {
             if (x < 0)

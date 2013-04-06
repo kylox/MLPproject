@@ -24,13 +24,11 @@ namespace MLPproject
             this.Position = position;
             this.Menu = menu;
         }
-
         public bool Is_selected()
         {
             return Container.Intersects(new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1))
                 && (Data.mouseState.LeftButton == ButtonState.Released) && (Data.prevMouseState.LeftButton == ButtonState.Pressed);
         }
-
         public void draw(SpriteBatch spritebatch)
         {
             spritebatch.Begin();

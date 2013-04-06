@@ -26,25 +26,19 @@ namespace MLPproject
         int Joueur;
         int vitesse;
         int pv;
-
         bool IsSelected;
-
         Point origine = new Point(150, 120);
-
+        Color selectionColor = Color.Gray;
+        Color defaultColor = Color.White;
+        Type_unite Type;
+        Vector2 Position;
+        Texture2D Sprite;
+        Map Map;
         public bool isSelected
         {
             get { return IsSelected; }
             set { IsSelected = value; }
         }
-
-        Color selectionColor = Color.Gray;
-        Color defaultColor = Color.White;
-
-        Type_unite Type;
-        Vector2 Position;
-        Texture2D Sprite;
-        Map Map;
-
         public Unite(int joueur, Vector2 position, Type_unite type, Map map)
         {
             this.Type = type;
@@ -78,13 +72,11 @@ namespace MLPproject
             this.Map = map;
             this.IsSelected = false;
         }
-
         public void Deplacement(Point p)
         {
             Position.X = p.X;
             Position.Y = p.Y;
         }
-
         public bool Is_inbounds(Vector2 destination)//destination in bounds (a la souris)
         {
             switch (Type)
@@ -107,7 +99,6 @@ namespace MLPproject
 
             return true;
         }
-
         public void Update(GameTime gametime)
         {
             // On va permettre la selection de l'unité
@@ -138,12 +129,10 @@ namespace MLPproject
             #endregion
 
         }
-
         public bool MouseOnTile()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, Sprite.Width, Sprite.Height).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
-
         public Point TilePos(Point p)
         {
             int x = (p.X - (p.X % Sprite.Width));
@@ -151,7 +140,6 @@ namespace MLPproject
 
             return new Point(x, y);
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Begin();
