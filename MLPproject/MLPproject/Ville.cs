@@ -112,7 +112,7 @@ namespace MLPproject
                 {
                     switch (y)
                     {
-                        case 250:ef
+                        case 250:
 
                             if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
