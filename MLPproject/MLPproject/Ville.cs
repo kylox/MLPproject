@@ -48,6 +48,7 @@ namespace MLPproject
         {
             return new Rectangle((int)Position.X, (int)Position.Y, 32, 32).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
+
         private Vector2 position_unité(Vector2 P)
         {
 
@@ -78,7 +79,7 @@ namespace MLPproject
                 }
                 #endregion
                 #region creation nouvelle unité
-                if (IsSelected && Isplayable)
+                if (IsSelected && Isplayable) //permet de passer en mode posage d'unité 
                 {
                     foreach (string S in type_unite)
                     {
@@ -92,7 +93,7 @@ namespace MLPproject
                     }
                 }
 
-                if (creation && (Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
+                if (creation && (Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))//pose l'unité ! 
                 {
                     switch (y)
                     {
@@ -101,11 +102,11 @@ namespace MLPproject
                             Joueur.Argent -= 100;
                             break;
                         case 300:
-                            Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.rapide, Map, game));
+                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
                             Joueur.Argent -= 200;
                             break;
                         case 350:
-                            Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.lourde, Map, game));
+                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.lourde, Map, game));
                             Joueur.Argent -= 300;
                             break;
                     }
@@ -117,16 +118,7 @@ namespace MLPproject
         public void Draw(SpriteBatch spritebatch)
         {
             int y = 250;
-            if (creation)
-                for (int i = 0; i < 3; i++)
-                {
-                    for (int j = 0; j < 3; j++)
-                    {
-                        if (Map.ValidCoordinates((int)Position.X - 32 + 32 * i, (int)Position.Y - 32 + 32 * j))
-                            spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 + 32 * i, (int)Position.Y - 32 + 32 * j, 32, 32), Color.FromNonPremultiplied(51, 204, 0, 50));
-                    }
-                }
-
+           
             #region dessine la ville de la bonne couleur
             if (Joueur.ID == 1)
                 spritebatch.Draw(TexturePack.ville, Position, Color.Blue);
