@@ -70,7 +70,7 @@ namespace MLPproject
         {
 
         }
-        void jeux(Joueur J1,Joueur J2)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
+        void jeux(Joueur J1, Joueur J2)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
         {
             _joueur = joueur + 1;
             switch (nouvelle_phase)
@@ -114,12 +114,12 @@ namespace MLPproject
                 #region attaque
 
                 case Phase_de_jeu.attaque:
-                    
                     foreach (Unite unite1 in J1.Unites)
-                        foreach (Unite unite2 in J2.Unites)
-                            if (unite1.Container.Intersects(unite2.Container))
-                                unite1.combat(unite2);
-                             
+                        for (int i = 0; i < J2.Unites.Count; i++)
+                        {
+                            if (unite1.Container.Intersects(J2.Unites.ElementAt(i).Container))
+                                unite1.combat(J2.Unites.ElementAt(i));
+                        }
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
                     {
                         nouvelle_phase = Phase_de_jeu.ravitaillement;
@@ -127,7 +127,7 @@ namespace MLPproject
                             joueur = 1;
                         else
                             joueur = 0;
-                        
+
                     }
                     break;
                 #endregion
@@ -144,12 +144,12 @@ namespace MLPproject
             if (joueur == 0)
             {
                 J1.Update(gameTime, this);
-                jeux(J1,J2);
+                jeux(J1, J2);
             }
             else
             {
                 J2.Update(gameTime, this);
-                jeux(J2,J1);
+                jeux(J2, J1);
             }
 
             #endregion
