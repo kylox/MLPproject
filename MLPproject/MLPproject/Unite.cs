@@ -25,7 +25,7 @@ namespace MLPproject
         int Defense;
         int Vitesse;
         int Pv;
-        bool IsSelected, IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
+        bool IsSelected, IsMoved, IsAtta;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
         Random rd;
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
@@ -74,6 +74,12 @@ namespace MLPproject
             set { IsMoved = value; }
         }
 
+        public bool isAtta
+        {
+            get { return IsAtta; }
+            set { IsAtta = value; }
+        }
+
         public Unite(Joueur joueur, Vector2 position, Type_unite type, Map map, Game1 game)
         {
             this.Game = game;
@@ -84,24 +90,24 @@ namespace MLPproject
             switch (Type)
             {
                 case Type_unite.legere:
-                    Attaque = 2;
-                    Defense = 2;
+                    Attaque = 8;
+                    Defense = 5;
                     Vitesse = 2;
-                    Pv = 14;
+                    Pv = 10;
                     Sprite = TexturePack.TilesUnites[0]; // mettre la texure 
                     break;
                 case Type_unite.rapide:
-                    Attaque = 1;
-                    Defense = 1;
+                    Attaque = 3;
+                    Defense = 2;
                     Vitesse = 4;
-                    pv = 7;
+                    pv = 8;
                     Sprite = TexturePack.TilesUnites[1]; //mettre texutre
                     break;
                 case Type_unite.lourde:
-                    Attaque = 3;
-                    Defense = 3;
+                    Attaque = 10;
+                    Defense = 8;
                     Vitesse = 1;
-                    Pv = 21;
+                    Pv = 15;
                     Sprite = TexturePack.TilesUnites[2]; // mettre texture
                     break;
             }
@@ -112,39 +118,35 @@ namespace MLPproject
         }
         public void combat(Unite unite2)
         {
-            int aux1 = this.attaque;
-            int aux2 = unite2.defense;
-            int att = rd.Next(1, 7);
-            int def = rd.Next(1, 7);
-            while (this.attaque > 0 && unite2.defense > 0)
+            if (!this.isAtta)
             {
-                if (att > def)
-                {
-                    this.attaque--;
-                    unite2.defense--;
-                    unite2.pv -= 3;
-                    att = rd.Next(1, 7);
-                    if (unite2.defense != 0)
-                        def = rd.Next(1, 7);
-                }
-                
-                else
-                {
-                    this.attaque--;
-                    att = rd.Next(1, 7);
-                }
-            }
-            while (this.attaque > 0)
-            {
-                unite2.pv -= 3;
-                this.attaque--;
-            }
-            
-            if (unite2.pv <= 0)
-                unite2.Joueur.Unites.Remove(unite2);
+                int aux1 = this.attaque;
+                int aux2 = unite2.defense;
 
-            unite2.defense = aux2;
-            this.attaque = aux1;
+                int nbattaque = this.Vitesse;
+
+                while (nbattaque > 0)
+                {
+                    int att = rd.Next(1, this.Attaque);
+                    int def = rd.Next(1, unite2.Defense);
+
+
+                    if (att > def)
+                    {
+                        unite2.pv -= (att - def);
+                        nbattaque--;
+                    }
+                    else
+                    {
+                        nbattaque--;
+                    }
+                }
+
+                if (unite2.pv <= 0)
+                    unite2.Joueur.Unites.Remove(unite2);
+
+                this.IsAtta = true;
+            }
         }
         public void Deplacement(Point p)
         {
@@ -231,9 +233,9 @@ namespace MLPproject
             {
                 #region draw caracteristique de l'unité selectionné
                 if (Joueur.ID == 1)
-                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse, new Vector2(10, 500), Color.White);
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse + "\nPVs : " + this.pv, new Vector2(10, 500), Color.White);
                 if (Joueur.ID == 2)
-                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse, new Vector2(725, 500), Color.White);
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse + "\nPVs : " + this.pv, new Vector2(725, 500), Color.White);
                 #endregion
                 #region draw de la surface de mouvement
                 if (Game.Phase == Phase_de_jeu.deplacement)

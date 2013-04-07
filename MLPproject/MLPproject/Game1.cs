@@ -106,6 +106,7 @@ namespace MLPproject
                         {
                             unite.isMoved = false;//les unite pourront etre rebouger au prochain tour
                             unite.isSelected = false;//les unite pourront etre rebouger au prochain tour
+                            unite.isAtta = false;
                         }
                     }
 
@@ -114,11 +115,14 @@ namespace MLPproject
                 #region attaque
 
                 case Phase_de_jeu.attaque:
-                    foreach (Unite unite1 in J1.Unites)
-                        for (int i = 0; i < J2.Unites.Count; i++)
+                        for (int j = 0; j < J1.Unites.Count; j++)
                         {
-                            if (unite1.Container.Intersects(J2.Unites.ElementAt(i).Container))
-                                unite1.combat(J2.Unites.ElementAt(i));
+                            Unite unite1 = J1.Unites.ElementAt(j);
+                            for (int i = 0; i < J2.Unites.Count; i++)
+                            {
+                                if (unite1.Container.Intersects(J2.Unites.ElementAt(i).Container))
+                                    unite1.combat(J2.Unites.ElementAt(i));
+                            }
                         }
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
                     {
