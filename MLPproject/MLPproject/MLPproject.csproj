@@ -107,9 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Boutton.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="HUD.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
