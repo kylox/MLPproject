@@ -26,6 +26,7 @@ namespace MLPproject
         int vitesse;
         int pv;
         bool IsSelected, IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
+
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
         Type_unite Type;
@@ -34,6 +35,7 @@ namespace MLPproject
         Map Map;
         Joueur Joueur;
         Game1 Game;
+
         public bool isSelected
         {
             get { return IsSelected; }
@@ -151,7 +153,6 @@ namespace MLPproject
             int y = (p.Y - (p.Y % 32)) - 8;
             return new Point(x, y);
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
             if (Joueur.ID == 1)

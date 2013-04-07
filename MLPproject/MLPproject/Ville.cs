@@ -51,8 +51,9 @@ namespace MLPproject
         private Vector2 position_unité(Vector2 P)
         {
 
-            P.X = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position.X;
-            P.Y = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position.Y;
+            P = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position;
+            P.X -= Map.Origine.X;
+            P.Y -= Map.Origine.Y;
 
             return P;
         }
@@ -81,33 +82,38 @@ namespace MLPproject
                 {
                     foreach (string S in type_unite)
                     {
-                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed) 
+                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed)
                             && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y + 10, 100, 5)))
                         {
-                            switch (y)
-                            {
-                                case 250:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.legere, Map, game));
-                                    Joueur.Argent -= 100;
-                                    break;
-                                case 300:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.rapide, Map, game));
-                                    Joueur.Argent -= 200;
-                                    break;
-                                case 350:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.lourde, Map, game));
-                                    Joueur.Argent -= 300;
-                                    break;
-                            }
-                            Isplayable = false;
+                            creation = true;
+                            break;
                         }
                         y += 50;
                     }
                 }
+
+                if (creation && (Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
+                {
+                    switch (y)
+                    {
+                        case 250:
+                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X,Data.mouseState.Y)), Type_unite.legere, Map, game));
+                            Joueur.Argent -= 100;
+                            break;
+                        case 300:
+                            Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.rapide, Map, game));
+                            Joueur.Argent -= 200;
+                            break;
+                        case 350:
+                            Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.lourde, Map, game));
+                            Joueur.Argent -= 300;
+                            break;
+                    }
+                    Isplayable = false;
+                }
                 #endregion
             }
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
             int y = 250;
