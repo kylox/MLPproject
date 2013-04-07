@@ -52,10 +52,10 @@ namespace MLPproject
         private Vector2 position_unité(Vector2 P)
         {
 
+
             P = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position;
             P.X -= Map.Origine.X;
             P.Y -= Map.Origine.Y;
-
             return P;
         }
         public void Update(Game1 game)
@@ -93,13 +93,17 @@ namespace MLPproject
                     }
                 }
 
-                if (creation && (Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))//pose l'unité ! 
+                if (creation && (Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed) && Isplayable)//pose l'unité ! 
                 {
                     switch (y)
                     {
                         case 250:
-                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X,Data.mouseState.Y)), Type_unite.legere, Map, game));
-                            Joueur.Argent -= 100;
+                            if (Math.Abs(Data.mouseState.X - Position.X) <= 32*2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32*2))
+                            {
+                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.legere, Map, game));
+                                Joueur.Argent -= 100;
+                                break;
+                            }
                             break;
                         case 300:
                             Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
@@ -118,7 +122,7 @@ namespace MLPproject
         public void Draw(SpriteBatch spritebatch)
         {
             int y = 250;
-           
+
             #region dessine la ville de la bonne couleur
             if (Joueur.ID == 1)
                 spritebatch.Draw(TexturePack.ville, Position, Color.Blue);
