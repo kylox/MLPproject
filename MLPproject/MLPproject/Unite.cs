@@ -23,10 +23,10 @@ namespace MLPproject
     {
         int Attaque;
         int Defense;
-        int vitesse;
-        int pv;
+        int Vitesse;
+        int Pv;
         bool IsSelected, IsMoved;//la variable is moved permet de savoir si l'unite a etait deplace pendant le tour
-
+        Random rd;
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
         Type_unite Type;
@@ -35,7 +35,34 @@ namespace MLPproject
         Map Map;
         Joueur Joueur;
         Game1 Game;
-
+        public int attaque
+        {
+            get { return Attaque; }
+            set { Attaque = value; }
+        }
+        public int defense
+        {
+            get { return Defense; }
+            set { Defense = value;}
+        }
+        public int pv
+        {
+            get { return Pv; }
+            set {Pv = value;}
+        }
+        public int vitesse
+        {
+            get { return Vitesse; }
+        }
+        public Rectangle Container
+        {
+            get { return new Rectangle((int)Position.X,(int) Position.Y, 32, 32); }
+        }
+        public Joueur joueur
+        {
+            get { return Joueur; }
+            set { Joueur = value; }
+        }
         public bool isSelected
         {
             get { return IsSelected; }
@@ -53,24 +80,28 @@ namespace MLPproject
             this.Joueur = joueur;
             this.Type = type;
             IsMoved = false;
+            rd = new Random();
             switch (Type)
             {
                 case Type_unite.legere:
                     Attaque = 2;
                     Defense = 2;
-                    vitesse = 2;
+                    Vitesse = 2;
+                    Pv = 14;
                     Sprite = TexturePack.TilesUnites[0]; // mettre la texure 
                     break;
                 case Type_unite.rapide:
                     Attaque = 1;
                     Defense = 1;
-                    vitesse = 4;
+                    Vitesse = 4;
+                    pv = 7;
                     Sprite = TexturePack.TilesUnites[1]; //mettre texutre
                     break;
                 case Type_unite.lourde:
                     Attaque = 3;
                     Defense = 3;
-                    vitesse = 1;
+                    Vitesse = 1;
+                    Pv = 21;
                     Sprite = TexturePack.TilesUnites[2]; // mettre texture
                     break;
             }
@@ -78,6 +109,42 @@ namespace MLPproject
             this.Position.Y = map.Origine.Y + position.Y;
             this.Map = map;
             this.IsSelected = false;
+        }
+        public void combat(Unite unite2)
+        {
+            int aux1 = this.attaque;
+            int aux2 = unite2.defense;
+            int att = rd.Next(1, 7);
+            int def = rd.Next(1, 7);
+            while (this.attaque > 0 && unite2.defense > 0)
+            {
+                if (att > def)
+                {
+                    this.attaque--;
+                    unite2.defense--;
+                    unite2.pv -= 3;
+                    att = rd.Next(1, 7);
+                    if (unite2.defense != 0)
+                        def = rd.Next(1, 7);
+                }
+                
+                else
+                {
+                    this.attaque--;
+                    att = rd.Next(1, 7);
+                }
+            }
+            while (this.attaque > 0)
+            {
+                unite2.pv -= 3;
+                this.attaque--;
+            }
+            
+            if (unite2.pv <= 0)
+                unite2.Joueur.Unites.Remove(unite2);
+
+            unite2.defense = aux2;
+            this.attaque = aux1;
         }
         public void Deplacement(Point p)
         {
@@ -111,7 +178,7 @@ namespace MLPproject
                 }
                 if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
                 {
-                    if (IsSelected /*&& !IsMoved*/)
+                    if (IsSelected && !IsMoved)
                     {
                         bool tupeux = false;
                         int ixe = (int)Math.Abs(Data.mouseState.X - (Data.mouseState.X % 32) - 10 - Position.X);
@@ -164,9 +231,9 @@ namespace MLPproject
             {
                 #region draw caracteristique de l'unité selectionné
                 if (Joueur.ID == 1)
-                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(10, 500), Color.White);
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse, new Vector2(10, 500), Color.White);
                 if (Joueur.ID == 2)
-                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(725, 500), Color.White);
+                    spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.Vitesse, new Vector2(725, 500), Color.White);
                 #endregion
                 #region draw de la surface de mouvement
                 if (Game.Phase == Phase_de_jeu.deplacement)
@@ -185,6 +252,8 @@ namespace MLPproject
                             break;
                     }
                 #endregion
+
+                spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X, (int)Position.Y,pv*2, 5), Color.Green);
             }
         }
     }

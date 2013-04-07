@@ -70,20 +70,21 @@ namespace MLPproject
         {
 
         }
-        void jeux(Joueur J)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
+        void jeux(Joueur J1,Joueur J2)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
         {
+            _joueur = joueur + 1;
             switch (nouvelle_phase)
             {
                 #region ravitaillement
                 case Phase_de_jeu.ravitaillement:
 
                     if (old_phase != nouvelle_phase)
-                        foreach (Ville ville in J.Villes)
-                            J.Argent += 100;
+                        foreach (Ville ville in J1.Villes)
+                            J1.Argent += 100;
 
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour !
                     {
-                        foreach (Ville ville in J.Villes)
+                        foreach (Ville ville in J1.Villes)
                         {
                             ville.isPlayable = true;
                             ville.isSelected = false;
@@ -111,7 +112,14 @@ namespace MLPproject
                     break;
                 #endregion
                 #region attaque
+
                 case Phase_de_jeu.attaque:
+                    
+                    foreach (Unite unite1 in J1.Unites)
+                        foreach (Unite unite2 in J2.Unites)
+                            if (unite1.Container.Intersects(unite2.Container))
+                                unite1.combat(unite2);
+                             
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
                     {
                         nouvelle_phase = Phase_de_jeu.ravitaillement;
@@ -119,7 +127,7 @@ namespace MLPproject
                             joueur = 1;
                         else
                             joueur = 0;
-                        _joueur = joueur + 1;
+                        
                     }
                     break;
                 #endregion
@@ -136,12 +144,12 @@ namespace MLPproject
             if (joueur == 0)
             {
                 J1.Update(gameTime, this);
-                jeux(J1);
+                jeux(J1,J2);
             }
             else
             {
                 J2.Update(gameTime, this);
-                jeux(J2);
+                jeux(J2,J1);
             }
 
             #endregion
