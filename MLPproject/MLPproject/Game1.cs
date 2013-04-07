@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace MLPproject
 {
-   public enum Phase_de_jeu
+    public enum Phase_de_jeu
     {
         ravitaillement,
         deplacement,
@@ -76,7 +76,7 @@ namespace MLPproject
             {
                 #region ravitaillement
                 case Phase_de_jeu.ravitaillement:
-                    
+
                     if (old_phase != nouvelle_phase)
                         foreach (Ville ville in J.Villes)
                             J.Argent += 100;
@@ -87,6 +87,7 @@ namespace MLPproject
                         {
                             ville.isPlayable = true;
                             ville.isSelected = false;
+                            ville.Creation = false;
                         }
                         nouvelle_phase = Phase_de_jeu.deplacement;
                     }

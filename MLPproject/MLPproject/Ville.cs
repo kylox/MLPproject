@@ -26,13 +26,18 @@ namespace MLPproject
             get { return Isplayable; }
             set { Isplayable = value; }
         }
+        public bool Creation
+        {
+            get { return creation; }
+            set { creation = value; }
+        }
         Map Map;
         Color selectionColor = Color.Gray;
         Color defaultColor = Color.White;
         Color texte_selec = Color.Red;
         List<string> type_unite;
         Joueur Joueur;
-
+        int y;
         public Ville(Joueur joueur, Vector2 position, Map map)
         {
             type_unite = new List<string>() { "unite legere", "unite rapide", "unite lourde" };
@@ -43,16 +48,14 @@ namespace MLPproject
             creation = false;
             this.Map = map;
             this.Joueur = joueur;
+            y = 250;
         }
         public bool MouseOnTile()
         {
             return new Rectangle((int)Position.X, (int)Position.Y, 32, 32).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
-
         private Vector2 position_unité(Vector2 P)
         {
-
-
             P = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position;
             P.X -= Map.Origine.X;
             P.Y -= Map.Origine.Y;
@@ -60,7 +63,7 @@ namespace MLPproject
         }
         public void Update(Game1 game)
         {
-            int y = 250;
+            
             if (game.Phase == Phase_de_jeu.ravitaillement)
             {
                 #region selection de la ville
@@ -84,12 +87,24 @@ namespace MLPproject
                     foreach (string S in type_unite)
                     {
                         if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed)
-                            && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y + 10, 100, 5)))
+                            && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, 250 + 10, 100, 5)))
                         {
                             creation = true;
-                            break;
+                            y = 250;
                         }
-                        y += 50;
+                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed)
+                            && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, 300 + 10, 100, 5)))
+                        {
+                            creation = true;
+                            y = 300;
+
+                        }
+                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed)
+                            && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, 350 + 10, 100, 5)))
+                        {
+                            creation = true;
+                            y = 350;
+                        }
                     }
                 }
 
@@ -98,7 +113,7 @@ namespace MLPproject
                     switch (y)
                     {
                         case 250:
-                            if (Math.Abs(Data.mouseState.X - Position.X) <= 32*2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32*2))
+                            if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
                                 Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.legere, Map, game));
                                 Joueur.Argent -= 100;
@@ -106,22 +121,31 @@ namespace MLPproject
                             }
                             break;
                         case 300:
-                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
-                            Joueur.Argent -= 200;
+                            if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
+                            {
+                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
+                                Joueur.Argent -= 200;
+                                break;
+                            }
                             break;
                         case 350:
-                            Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.lourde, Map, game));
-                            Joueur.Argent -= 300;
+                            if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
+                            {
+                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.lourde, Map, game));
+                                Joueur.Argent -= 300;
+                                break;
+                            }
                             break;
                     }
                     Isplayable = false;
                 }
+
                 #endregion
             }
         }
         public void Draw(SpriteBatch spritebatch)
         {
-            int y = 250;
+            int y_1 = 250;
 
             #region dessine la ville de la bonne couleur
             if (Joueur.ID == 1)
@@ -134,11 +158,11 @@ namespace MLPproject
             {
                 foreach (string S in type_unite)
                 {
-                    if (new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y + 10, 100, 5)))
-                        spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y), texte_selec);
+                    if (new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y_1 + 10, 100, 5)))
+                        spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y_1), texte_selec);
                     else
-                        spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y), defaultColor);
-                    y += 50;
+                        spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y_1), defaultColor);
+                    y_1 += 50;
                 }
             }
             #endregion
