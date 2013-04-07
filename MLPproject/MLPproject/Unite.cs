@@ -84,25 +84,9 @@ namespace MLPproject
         }
         public bool Is_inbounds(Vector2 destination)//destination in bounds (a la souris)
         {
-            switch (Type)
-            {
-                case Type_unite.legere:
-                    if (Math.Abs(destination.X - Position.X) < 2 || Math.Abs(destination.X - Position.X) < 2)
-                        return false;
-                    break;
-
-                case Type_unite.rapide:
-                    if (Math.Abs(destination.X - Position.X) < 4 || Math.Abs(destination.X - Position.X) < 4)
-                        return false;
-                    break;
-
-                case Type_unite.lourde:
-                    if (Math.Abs(destination.X - Position.X) < 1 || Math.Abs(destination.X - Position.X) < 1)
-                        return false;
-                    break;
-            }
-
-            return true;
+            return Map.Origine.X <= destination.X
+                                    && destination.X <= (Map.Origine.X + 16 * 32)
+                                    && Map.Origine.Y <= destination.Y && destination.Y <= Map.Origine.Y + 16 * 32; ;
         }
         public void Update(GameTime gametime, Game1 game)
         {
@@ -125,21 +109,24 @@ namespace MLPproject
                 }
                 if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed))
                 {
-                    if (IsSelected && !IsMoved)
+                    if (IsSelected /*&& !IsMoved*/)
                     {
                         bool tupeux = false;
-                        int ixe = (int)Math.Abs(Data.mouseState.X - Position.X);
-                        int ygrec = (int)Math.Abs(Data.mouseState.Y - Position.Y);
+                        int ixe = (int)Math.Abs(Data.mouseState.X - (Data.mouseState.X % 32) - 10 - Position.X);
+                        int ygrec = (int)Math.Abs(Data.mouseState.Y - (Data.mouseState.Y % 32) - 8 - Position.Y);
                         switch (Type)
                         {
                             case Type_unite.legere:
-                                tupeux = (ixe / 32 < 2) && (ygrec / 32 < 2);
+                                tupeux = (ixe / 32 <= 2) && (ygrec / 32 <= 2)
+                                    && Is_inbounds(new Vector2(Data.mouseState.X, Data.mouseState.Y));
                                 break;
                             case Type_unite.rapide:
-                                tupeux = (ixe / 32 < 4) && (ygrec / 32 < 4);
+                                tupeux = (ixe / 32 <= 4) && (ygrec / 32 <= 4)
+                                    && Is_inbounds(new Vector2(Data.mouseState.X, Data.mouseState.Y));
                                 break;
                             case Type_unite.lourde:
-                                tupeux = (ixe / 32 < 1) && (ygrec / 32 < 1);
+                                tupeux = (ixe / 32 <= 1) && (ygrec / 32 <= 1)
+                                   && Is_inbounds(new Vector2(Data.mouseState.X, Data.mouseState.Y));
                                 break;
                         }
                         if (tupeux)
@@ -160,8 +147,8 @@ namespace MLPproject
         }
         public Point TilePos(Point p)
         {
-            int x = (p.X - (p.X % Sprite.Width));
-            int y = (p.Y - (p.Y % Sprite.Height));
+            int x = (p.X - (p.X % 32)) - 10;
+            int y = (p.Y - (p.Y % 32)) - 8;
             return new Point(x, y);
         }
 
@@ -180,7 +167,6 @@ namespace MLPproject
                 if (Joueur.ID == 2)
                     spritebatch.DrawString(TexturePack.font, "attaque : " + this.Attaque + "\ndefense : " + this.Defense + "\nvitesse : " + this.vitesse, new Vector2(725, 500), Color.White);
                 #endregion
-
                 #region draw de la surface de mouvement
                 if (Game.Phase == Phase_de_jeu.deplacement)
                     switch (Type)

@@ -15,7 +15,7 @@ namespace MLPproject
     class Ville
     {
         Vector2 Position;
-        bool IsSelected, Isplayable;
+        bool IsSelected, Isplayable, creation;
         public bool isSelected
         {
             get { return IsSelected; }
@@ -40,6 +40,7 @@ namespace MLPproject
             this.Position.Y = position.Y * 32 + map.Origine.Y;
             IsSelected = false;
             Isplayable = true;
+            creation = false;
             this.Map = map;
             this.Joueur = joueur;
         }
@@ -47,11 +48,20 @@ namespace MLPproject
         {
             return new Rectangle((int)Position.X, (int)Position.Y, 32, 32).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
+        private Vector2 position_unité(Vector2 P)
+        {
+
+            P.X = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position.X;
+            P.Y = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position.Y;
+
+            return P;
+        }
         public void Update(Game1 game)
         {
             int y = 250;
             if (game.Phase == Phase_de_jeu.ravitaillement)
             {
+                #region selection de la ville
                 if ((Data.mouseState.LeftButton == ButtonState.Pressed) && (Data.prevMouseState.LeftButton != ButtonState.Pressed))
                 {
                     if (MouseOnTile())
@@ -65,27 +75,27 @@ namespace MLPproject
                         IsSelected = false;
                     }
                 }
-
-
+                #endregion
+                #region creation nouvelle unité
                 if (IsSelected && Isplayable)
                 {
                     foreach (string S in type_unite)
                     {
-                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed) &&
-                            new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y, 100, 20)))
+                        if ((Data.mouseState.RightButton == ButtonState.Pressed) && (Data.prevMouseState.RightButton != ButtonState.Pressed) 
+                            && new Rectangle(Data.mouseState.X, Data.mouseState.Y, 1, 1).Intersects(new Rectangle(0, y + 10, 100, 5)))
                         {
                             switch (y)
                             {
                                 case 250:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2((this.Position.X) -Map.Origine.X + 32, (this.Position.Y)-Map.Origine.Y), Type_unite.legere, Map, game));
+                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.legere, Map, game));
                                     Joueur.Argent -= 100;
                                     break;
                                 case 300:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.rapide, Map, game));
+                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.rapide, Map, game));
                                     Joueur.Argent -= 200;
                                     break;
                                 case 350:
-                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32, this.Position.Y), Type_unite.lourde, Map, game));
+                                    Joueur.Unites.Add(new Unite(Joueur, new Vector2(this.Position.X + 32 - Map.Origine.X, this.Position.Y - Map.Origine.Y), Type_unite.lourde, Map, game));
                                     Joueur.Argent -= 300;
                                     break;
                             }
@@ -94,16 +104,30 @@ namespace MLPproject
                         y += 50;
                     }
                 }
+                #endregion
             }
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
             int y = 250;
+            if (creation)
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (Map.ValidCoordinates((int)Position.X - 32 + 32 * i, (int)Position.Y - 32 + 32 * j))
+                            spritebatch.Draw(TexturePack.pixel, new Rectangle((int)Position.X - 32 + 32 * i, (int)Position.Y - 32 + 32 * j, 32, 32), Color.FromNonPremultiplied(51, 204, 0, 50));
+                    }
+                }
+
+            #region dessine la ville de la bonne couleur
             if (Joueur.ID == 1)
                 spritebatch.Draw(TexturePack.ville, Position, Color.Blue);
             else
                 spritebatch.Draw(TexturePack.ville, Position, Color.Red);
+            #endregion
+            #region dessine des boutons de creation d'unité
             if (IsSelected && Isplayable)
             {
                 foreach (string S in type_unite)
@@ -112,10 +136,10 @@ namespace MLPproject
                         spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y), texte_selec);
                     else
                         spritebatch.DrawString(TexturePack.font, S, new Vector2(0, y), defaultColor);
-
                     y += 50;
                 }
             }
+            #endregion
 
         }
     }
