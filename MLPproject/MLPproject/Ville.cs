@@ -112,7 +112,8 @@ namespace MLPproject
                 {
                     switch (y)
                     {
-                        case 250:
+                        case 250:ef
+
                             if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
                                 Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.legere, Map, game));
