@@ -34,16 +34,13 @@ namespace MLPproject
         Phase_de_jeu old_phase;
         int joueur;
         int _joueur; //ne pas faire gaffe permet juste de dessiner le numero du joueur
-        Unite unite_J1; // Temporairement je créer une unité à la main
+
+        bool finjeu = false;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this)
             {
-                //PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width,
-                //PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height
-
-                // Petite modification pour que ça rentre dans mon écran ^^ (SDanTe)
                 PreferredBackBufferWidth = 16 * 32 + 200 + 11 * 12,
                 PreferredBackBufferHeight = 768
             };
@@ -66,10 +63,7 @@ namespace MLPproject
             nouvelle_phase = Phase_de_jeu.ravitaillement;
             old_phase = Phase_de_jeu.ravitaillement;
         }
-        protected override void UnloadContent()
-        {
 
-        }
         void jeux(Joueur J1, Joueur J2)//c'est la boucle du jeux suivant les phase de jeux J1 fait tout ses toutrs puis c'est au tour de J2
         {
             _joueur = joueur + 1;
@@ -115,15 +109,16 @@ namespace MLPproject
                 #region attaque
 
                 case Phase_de_jeu.attaque:
-                        for (int j = 0; j < J1.Unites.Count; j++)
-                        {
-                            Unite unite1 = J1.Unites.ElementAt(j);
-                            for (int i = 0; i < J2.Unites.Count; i++)
-                            {
-                                if (unite1.Container.Intersects(J2.Unites.ElementAt(i).Container))
-                                    unite1.combat(J2.Unites.ElementAt(i));
-                            }
-                        }
+                    for (int j = 0; j < J1.Unites.Count; j++)
+                    {
+                        Unite unite1 = J1.Unites.ElementAt(j);
+                        for (int i = 0; i < J2.Unites.Count; i++)
+                            if (unite1.Container.Intersects(J2.Unites.ElementAt(i).Container))
+                                unite1.combat(J2.Unites.ElementAt(i));
+                        if (unite1.Container.Intersects(new Rectangle(630, 620, 64, 64)) || unite1.Container.Intersects(new Rectangle(150, 150, 32, 32)))
+                            finjeu = true;
+
+                    }
                     if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))//change le tour
                     {
                         nouvelle_phase = Phase_de_jeu.ravitaillement;
@@ -131,7 +126,6 @@ namespace MLPproject
                             joueur = 1;
                         else
                             joueur = 0;
-
                     }
                     break;
                 #endregion
@@ -174,6 +168,12 @@ namespace MLPproject
             spriteBatch.DrawString(TexturePack.font, Data.mouseState.X + "    " + Data.mouseState.Y, new Vector2(750, 0), Color.Red);
             spriteBatch.DrawString(TexturePack.font, "c'est le tour de J" + _joueur + " phase : " + nouvelle_phase, new Vector2(100 + 5 * 11 + 30 + 25, 0), Color.White);
             spriteBatch.DrawString(TexturePack.font, "press spacebar when you have finish your turn", new Vector2(100 + 5 * 11 + 30 + 25, 725), Color.White);
+            if (finjeu)
+            {
+                spriteBatch.DrawString(TexturePack.font, "FIN DU JEU, JOUEUR " + _joueur + " A GAGNAY !!! \nAppuyer sur espace pour quitter", new Vector2(310, 310), Color.Red);
+                if (Data.keyboardState.IsKeyDown(Keys.Space) && Data.prevKeyboardState.IsKeyUp(Keys.Space))
+                    this.Exit();
+            }
             spriteBatch.End();
 
             base.Draw(gameTime);
