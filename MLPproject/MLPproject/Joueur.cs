@@ -46,11 +46,6 @@ namespace MLPproject
             else
                 list_ville = new List<Ville>() { new Ville(this, new Vector2(15, 15), map) };
         }
-        public void intersect()
-        {
-
-
-        }
         public void Update(GameTime gametime, Game1 game)
         {
             foreach (Unite unit in list_unite)

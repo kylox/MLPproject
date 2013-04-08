@@ -54,7 +54,7 @@ namespace MLPproject
         {
             return new Rectangle((int)Position.X, (int)Position.Y, 32, 32).Contains(new Point(Data.mouseState.X, Data.mouseState.Y));
         }
-        private Vector2 position_unité(Vector2 P)
+        private Vector2 position_unite(Vector2 P)
         {
             P = Map.GetTile((int)P.X - Map.Origine.X, (int)P.Y - Map.Origine.Y).Position;
             P.X -= Map.Origine.X;
@@ -116,7 +116,7 @@ namespace MLPproject
 
                             if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
-                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.legere, Map, game));
+                                Joueur.Unites.Add(new Unite(Joueur, position_unite(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.legere, Map, game));
                                 Joueur.Argent -= 100;
                                 break;
                             }
@@ -124,7 +124,7 @@ namespace MLPproject
                         case 300:
                             if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
-                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
+                                Joueur.Unites.Add(new Unite(Joueur, position_unite(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.rapide, Map, game));
                                 Joueur.Argent -= 200;
                                 break;
                             }
@@ -132,7 +132,7 @@ namespace MLPproject
                         case 350:
                             if (Math.Abs(Data.mouseState.X - Position.X) <= 32 * 2 && (Math.Abs(Data.mouseState.Y - Position.Y) <= 32 * 2))
                             {
-                                Joueur.Unites.Add(new Unite(Joueur, position_unité(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.lourde, Map, game));
+                                Joueur.Unites.Add(new Unite(Joueur, position_unite(new Vector2(Data.mouseState.X, Data.mouseState.Y)), Type_unite.lourde, Map, game));
                                 Joueur.Argent -= 300;
                                 break;
                             }
